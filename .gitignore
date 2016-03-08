@@ -16,6 +16,10 @@
 !/log/.keep
 /tmp
 
+#deployment
+/config/database.yml
+/conig/secrets.yml
+
 ## Plugin-specific files:
 
 # IntelliJ
