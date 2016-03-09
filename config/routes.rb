@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   end
 
   resources :questions
-  resources :quizzes
   resources :categories
   resources :tasks
 
