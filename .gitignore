@@ -53,3 +53,6 @@ fabric.properties
 # Maven
 log/
 target/
+
+# Moez
+Gemfile.lock
