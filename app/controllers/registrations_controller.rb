@@ -1,6 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController  
   respond_to :json
   prepend_before_action :check_captcha, only: [:create]
+
+  def after_inactive_sign_up_path_for(resource_or_scope)
+    session["user_return_to"] || root_path
+  end
+  
   private
 
 	def check_captcha
