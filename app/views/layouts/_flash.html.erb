@@ -1,0 +1,6 @@
+<% if notice.present? %>
+  <p class="flash alert alert-success rtl"><%= raw(notice) %><span class="dismiss">X</span></p>
+<% end %>
+<% if alert.present? %>
+  <p class="flash alert alert-danger rtl"><%= raw(alert) %><span class="dismiss">X</span></p>
+<% end %>

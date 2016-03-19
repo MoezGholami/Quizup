@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="/">کافه کوئیز</a>
+        </div>
+        <!--/.navbar-header-->
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
+            <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="/"><i class="fa fa-user"></i><span>خانه</span></a>
+          </li>
+              <% if current_user %>
+                <li class="dropdown">
+                    <a href="/users/sign_in"><i class="fa fa-user"></i><span>ورود</span></a>
+                </li>
+              <% else %>
+                <li class="dropdown">
+                  <a href="/users/sign_out"><i class="fa fa-user"></i><span>خروج</span></a>
+                </li>
+              <% end %>
+              <li class="dropdown">
+                <a href="/categories"><i class="fa fa-user"></i><span>فهرست</span></a>
+              </li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i><span>جستجو</span></a>
+                  <ul class="dropdown-menu search-form">
+                   <form>        
+                        <input type="text" class="search-text" name="s" placeholder="Search...">    
+                        <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+                   </form>
+                </ul>
+              </li>
+          </ul>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+        <!--/.navbar-collapse-->
+    </nav>
+    <nav class="navbar nav_bottom" role="navigation">
+     <div class="container">
+     <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header nav_2">
+          <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"></a>
+       </div> 
+       <!-- Collect the nav links, forms, and other content for toggling -->
+       </div>
+    </nav>

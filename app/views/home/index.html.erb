@@ -1,13 +1,56 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Cafe Quiz</title>
- 
-
-</head>
-<body>
-
- 
-
-</body>
-</html>
+<div class="banner">
+			<!-- banner Slider starts Here -->
+					<script src="/assets/responsiveslides.min.js"></script>
+					 <script>
+						// You can also use "$(window).load(function() {"
+						$(function () {
+						  // Slideshow 4
+						  $("#slider3").responsiveSlides({
+							auto: true,
+							pager: true,
+							nav: true,
+							speed: 500,
+							namespace: "callbacks",
+							before: function () {
+							  $('.events').append("<li>before event fired.</li>");
+							},
+							after: function () {
+							  $('.events').append("<li>after event fired.</li>");
+							}
+						  });
+					
+						});
+					  </script>
+					<!--//End-slider-script -->
+					<div  id="top" class="callbacks_container">
+						<ul class="rslides" id="slider3">
+							<li>
+								<div class="banner-bg">
+									<div class="container">
+										<div class="banner-info">
+											<h3><span></span></h3>
+											<p> کافه کوئیز یک شبکه اجتماعی  برای به چالش کشیدن اطلاعاتتان  هست 
+											</p>
+											<a href="/users/sign_up"><i class="fa fa-thumbs-up icon_1" style="font-size: 20px; transition: color 0.2s ease 0s, border-color 0.2s ease 0s, background-color 0.2s ease 0s; min-height: 0px; min-width: 0px; line-height: 20px; border-width: 0px 2px 0px 0px; margin: 0px; padding:0px 10px 0 0; letter-spacing: 0px;"></i>ثبت نام کنید</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="banner-bg banner-img2">
+									<div class="container">
+										<div class="banner-info">
+											<h3><span></span></h3>
+											<p>
+												کافه کوئیز یک شبکه اجتماعی  برای به چالش کشیدن اطلاعاتتون  هست
+											</p>
+											<a href="/users/sign_up"><i class="fa fa-thumbs-up icon_1" style="font-size: 20px; transition: color 0.2s ease 0s, border-color 0.2s ease 0s, background-color 0.2s ease 0s; min-height: 0px; min-width: 0px; line-height: 20px; border-width: 0px 2px 0px 0px; margin: 0px; padding:0px 10px 0 0; letter-spacing: 0px;"></i>ثبت نام کنید</a>
+										</div>
+									</div>
+								</div>
+							</li>							
+						</ul>
+		          </div>
+	</div>
+	<!-- //banner -->
+	<%= render 'layouts/flash' %>
