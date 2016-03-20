@@ -40,7 +40,7 @@ $(document).ready(function(){
 		$('form').submit(function() {
 			$('.popup').remove();
 			if(!$('.email').val() || $('.email').val() == 'Input your e-mail address here...') {
-				$('form').append('<p class="popup">Please fill out this field.</p>');
+				$('form').append('<p class="popup">لطفا این فیلد را پر کنید.</p>');
 				$('.email').focus();
 				return false;
 			}
