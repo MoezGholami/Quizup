@@ -1,20 +1,4 @@
-<!-- banner -->
-  <div class="courses_banner">
-    <div class="container">
-      <h3>عضویت درسایت</h3>
-      <p class="description">
-      
-        </p>
-        <div class="breadcrumb1">
-            <ul>
-                <li class="icon6"><a href="/">خانه</a></li>
-                <li class="current-page">عضویت</li>
-            </ul>
-        </div>
-    </div>
-  </div>
-    <!-- //banner -->
-    <%= render 'layouts/flash' %>
+
   <div class="courses_box1">
      <div class="container">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'login'}) do |f| %>
@@ -36,7 +20,7 @@
         <div class="field">
           <% if @validatable %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
+          <% end %>
           <%= f.password_field :password, :placeholder => t(:password), :class => 'required form-control' %>
         </div>
 
