@@ -8,8 +8,7 @@ class SessionsController < Devise::SessionsController
     password = params[:session][:password] if params[:session]
  	
     id = User.find_by(email: email).try(:id) if email.presence
-    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
- 	puts "#{request.format}"
+
     # Validations
     
  	if request.format == :json 

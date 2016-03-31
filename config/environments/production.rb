@@ -40,7 +40,13 @@ Rails.application.configure do
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
-
+  config.action_mailer.default_url_options = { host: 'cafequiz.ir', port: 80 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {:address => 'cafequiz.ir', :port => 25} 
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'noreply@cafequiz.ir'}
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
