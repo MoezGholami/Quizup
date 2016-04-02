@@ -1833,7 +1833,7 @@ ul.about_links li a:hover{
 }
 /* -- admission --*/
 .admission{
-	padding:5em 0;
+	padding:0 0;
 }
 .admission h1{
 	color:#000;
@@ -1940,6 +1940,7 @@ figure.team_member {
     position: relative;
     overflow: hidden;
     color: #fff;
+    margin-bottom: 2em;
 }
 figure.team_member img + div {
     position: absolute;
@@ -2036,7 +2037,12 @@ ul.pagination {
     padding-left: 15px;
     margin: 2em 0 0 0;
 }
-.pagination>li >a {
+
+.pagination {
+  
+  color: #222;
+}
+.pagination>a {
     border-bottom-left-radius:0px !important;
     border-top-left-radius:0px !important;
     padding: 6px 15px;
@@ -2044,6 +2050,22 @@ ul.pagination {
     border-left: 1px solid #f2f2f2;
     color: #222;
 }
+
+.pagination>.current{
+  padding-left: 15px;
+  margin: 2em 0 0 0; 
+  border-bottom-left-radius:0px !important;
+  border-top-left-radius:0px !important;
+  padding: 6px 15px;
+  border: none;
+  border-left: 1px solid #f2f2f2;
+  z-index: 2;   
+  color: #fff;
+  background-color:#f1b458;
+  border-color:#f1b458;
+  cursor: default;
+}
+
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
     z-index: 2;
     color: #fff;
