@@ -1,14 +1,18 @@
-
 <div class="courses_box1">
   <div class="container">
+
     <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {:class => 'login', method: :post}) do |f| %>
         <%= devise_error_messages! %>
-        <p>
+          <div class="panel panel-warning">
+            <div class="panel-body">
+              <%= image_tag("confirm.png" ,:size => "180x180", :alt => "rss feed") %>
+              </br>
+              <p class="text-warning">
           اگر ایمیل تاییدیه دریافت نکرده اید می توانید با وارد كردن ادرس ایمیلی كه در موقع ثبت نام وارد كرده اید آن را
           دریافت کنید.
         </p><br>
         <div class="field">
-          <%= f.email_field :email, autofocus: true, :placeholder => "ایمیل خود را وارد کنید" %>
+          <%= f.email_field :email, autofocus: true, :placeholder => "ایمیل خود را وارد کنید" , :class => 'required form-control' ,:size => 45 %>
         </div>
 
         <div class="actions">
@@ -16,6 +20,8 @@
         </div>
         <%= render "devise/shared/links" %>
     <% end %>
+      </div>
+    </div>
   </div>
 </div>
 
