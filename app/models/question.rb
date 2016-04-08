@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
-	has_many :categories
+	has_many :q2cats
+	has_many :categories, through: :q2cats
 	validate :has_categories?
 
 	def has_categories?

@@ -11,10 +11,11 @@
     </tr>
   </thead>
   <tbody>
+    <!-- tables are not layouting tools, use divs. you have bootstrap-->
     <% @categories.each do |category| %>
       <tr>
         <td><%= link_to category.id, category_path(category) %></td>
-        <td><%=l category.created_at %></td>
+        <td><%= category.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_category_path(category), :class => 'btn btn-default btn-xs' %>
@@ -26,6 +27,7 @@
         </td>
       </tr>
     <% end %>
+  <%= will_paginate @categories, :previous_label => t(:previous), :next_label => t(:next) %>
   </tbody>
 </table>
 

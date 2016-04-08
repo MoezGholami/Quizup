@@ -71,3 +71,6 @@
     forgot_password: "آیا رمز عبور خود را فراموش کرده اید؟"
     confirmation_instructions_not_received: "ایمیل تایید دریافت نکرده اید؟"
     remember_me: "مرا به خاطر بسپار"
+    question_search: "جستجوی سوال"
+    previous: 'قبلی'
+    next: 'بعدی'

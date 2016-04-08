@@ -5,7 +5,27 @@
 
 <dl class="dl-horizontal">
 </dl>
+<div class="row text-center">
+  <div class="col-md-12">
+    <%= form_tag q_in_cat_search_path, :method => :get do %>
+    <%= text_field_tag :q_title, params[:q_title] %>
+    <%= hidden_field_tag 'id', @category.id %>
+    <%= submit_tag t(:question_search), :name => nil %>
+    <% end %>
+  </div>
+</div>
+<% @this_category_questions.each do |question| %>
+    <div class="row text-center">
+      <div class="col-md-6">
+        <%= link_to question.id, question_path(question) %>
+      </div>
+      <div class="col-md-6">
+        <%= question.questionTitle %>
+      </div>
 
+    </div>
+<% end %>
+<%= will_paginate @this_category_questions, :previous_label => t(:previous), :next_label => t(:next) %>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               categories_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),

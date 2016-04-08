@@ -4,12 +4,24 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    if(params.has_key?(:cat_title))
+      @categories=Category.where('name like ?', '%'+params[:cat_title]+'%').paginate(:page => params[:page])
+    else
+      @categories = Category.paginate(:page => params[:page])
+    end
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+    if(params.has_key?(:id))
+      @category=Category.find(params[:id])
+    end
+    if(params.has_key?(:q_title))
+      @this_category_questions=@category.questions.where('questionTitle like ?', '%'+params[:q_title]+'%').paginate(:page => params[:page])
+    else
+      @this_category_questions=@category.questions.paginate(:page => params[:page])
+    end
   end
 
   # GET /categories/new
@@ -29,10 +41,8 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +53,8 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +65,6 @@ class CategoriesController < ApplicationController
     @category.destroy
     respond_to do |format|
       format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
