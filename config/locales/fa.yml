@@ -59,6 +59,38 @@
         not_saved:
           one: "به دلیل وجود خطای زیر عملیات با موفقیت صورت نگرفت."
           other: "به دلیل وجود خطاهای زیر عملیات ذخیره سازی با موفقیت صورت نگرفت."
+    time:
+      formats:
+        default: "زمان پیش فرض ... اگر اینو دیدید یعنی نباید می دیدید!!!"
+
+    helpers:
+      actions: "Actions"
+      links:
+        back: "بازگشت"
+        cancel: "لغو"
+        confirm: "آیا اطمینان دارید؟"
+        destroy: "حذف"
+        new: "ایجاد"
+        edit: "ویرایش"
+      titles:
+        edit: "ویرایش %{model}"
+        save: "ذخیره %{model}"
+        new: "ایجاد %{model}"
+        delete: "حذف %{model}"
+
+    activerecord:
+      errors:
+        models:
+          user:
+            attributes:
+              email:
+                blank: "وارد کردن ایمیل ضروری است. "
+              password_confirmation:
+                confirmation: "رمزهای عبور یکسان نیستند"
+              password:
+                too_short: "رمز عبور بسیار کوتاه است(حداقل ۸ حرف )"
+                blank: "وارد کردن رمز عبور ضروری است. "
+
     first_name: "نام"
     last_name: "نام خانوادگی"
     email: "ایمیل"
