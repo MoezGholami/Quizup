@@ -93,3 +93,5 @@
     image: "تصویر"
     previous: "قبلی"
     next: "بعدی"
+    questionTitle: "متن سوال"
+    created_at: "تاریخ ایجاد"
