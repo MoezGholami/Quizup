@@ -1,25 +1,22 @@
 <%- model_class = Question -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+<div class="panel panel-warning", style="margin: 40px 40px 40px 40px">
+<div class="panel-heading"> 
+  <h3 class="panel-title">سوال</h3> 
 </div>
-
+<div class="page-header", style="margin: 20px">
+  <%= image_tag @question.image, :class => "img-responsive wp-post-image", :size => '250x250', :alt => @question.questionTitle, :style=> "float: left; margin-left: 20px" %>
+  <dt style="padding: 0px 10px 190px 10px"><strong> <%= @question.questionTitle %></strong></dt>
+</div>
+<div class="panel-body">
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
-  <dd><%= @question.image %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:questionTitle) %>:</strong></dt>
-  <dd><%= @question.questionTitle %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:answer) %>:</strong></dt>
-  <dd><%= @question.answer %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:choice1) %>:</strong></dt>
-  <dd><%= @question.choice1 %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:choice2) %>:</strong></dt>
-  <dd><%= @question.choice2 %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:choice3) %>:</strong></dt>
-  <dd><%= @question.choice3 %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:choice4) %>:</strong></dt>
-  <dd><%= @question.choice4 %></dd>
-</dl>
-
+  <strong>پاسخ:</strong>
+  گزینه ی <%= @question.answer %>
+<ul class="list-group">
+  <a href="#" class="list-group-item list-group-item-warning"><strong><%= @question.choice1 %></strong></a>
+  <a href="#" class="list-group-item list-group-item-info"><strong><%= @question.choice2 %></strong></a>
+  <a href="#" class="list-group-item list-group-item-warning"><strong><%= @question.choice3 %></strong></a>
+  <a href="#" class="list-group-item list-group-item-info"><strong><%= @question.choice4 %></strong></a>
+</ul>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               questions_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -29,4 +26,6 @@
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+</div>
+</div>
 
