@@ -23,6 +23,7 @@ module Cafequiz
     config.i18n.default_locale = :fa
     config.encoding = "utf-8"
     WillPaginate.per_page=1
+    config.web_console.development_only = false
 
 
     # Do not swallow errors in after_commit/after_rollback callbacks.

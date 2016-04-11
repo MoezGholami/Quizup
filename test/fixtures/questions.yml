@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  image: MyString
-  questionTitle: MyString
+  image: salam.jpg
+  questionTitle: چطوری عزیزم؟
   answer: 1
-  choice1: MyString
-  choice2: MyString
-  choice3: MyString
-  choice4: MyString
+  choice1: 1
+  choice2: 2
+  choice3: 3
+  choice4: 4
 
 two:
-  image: MyString
-  questionTitle: MyString
+  image: khubam.jpg
+  questionTitle: خوبم مرسی
   answer: 1
-  choice1: MyString
-  choice2: MyString
-  choice3: MyString
-  choice4: MyString
+  choice1: 1
+  choice2: 2
+  choice3: 3
+  choice4: 4
