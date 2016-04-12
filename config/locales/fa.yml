@@ -130,3 +130,4 @@
     questionTitle: "متن سوال"
     created_at: "تاریخ ایجاد"
     create_question: 'ایجاد سوال'
+    search_in_categories: "جستجوی دسته بندی"
