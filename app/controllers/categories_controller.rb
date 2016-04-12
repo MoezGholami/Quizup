@@ -14,13 +14,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    if(params.has_key?(:id))
-      @category=Category.find(params[:id])
-    end
+    @category=Category.find(params[:id])
     if(params.has_key?(:q_title))
-      @this_category_questions=@category.questions.where('questionTitle like ?', '%'+params[:q_title]+'%').paginate(:page => params[:page])
+      @questions=@category.questions.where('questionTitle like ?', '%'+params[:q_title]+'%').paginate(:page => params[:page], per_page: 15)
     else
-      @this_category_questions=@category.questions.paginate(:page => params[:page])
+      @questions=@category.questions.paginate(:page => params[:page], per_page: 15)
     end
   end
 
@@ -76,6 +74,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.fetch(:category, {})
+      params.require(:category).permit(:image, :name)
     end
 end

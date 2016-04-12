@@ -22,7 +22,6 @@ module Cafequiz
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :fa
     config.encoding = "utf-8"
-    WillPaginate.per_page=1
     config.web_console.development_only = false
 
 

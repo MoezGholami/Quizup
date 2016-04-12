@@ -1,4 +1,4 @@
-<%= form_for @question, :html => { :class => "form-horizontal question" } do |f| %>
+<%= form_for @question, :html => { :class => "login" } do |f| %>
 
     <% if @question.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -15,58 +15,38 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :image, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :image, :class => 'form-control' %>
-    </div>
-    <%= error_span(@question[:image]) %>
+  <div class="field">
+    <%= f.text_field :questionTitle, autofocus: true, :placeholder => "متن سوال", :class => 'required form-control', :required => 'required' %>
   </div>
-  <div class="control-group">
-    <%= f.label :questionTitle, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :questionTitle, :class => 'form-control' %>
-    </div>
-    <%= error_span(@question[:questionTitle]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :answer, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :answer, :class => 'form-control' %>
-    </div>
-    <%= error_span(@question[:answer]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :choice1, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :choice1, :class => 'form-control' %>
-    </div>
-    <%= error_span(@question[:choice1]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :choice2, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :choice2, :class => 'form-control' %>
-    </div>
-    <%= error_span(@question[:choice2]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :choice3, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :choice3, :class => 'form-control' %>
-    </div>
-    <%= error_span(@question[:choice3]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :choice4, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :choice4, :class => 'form-control' %>
-    </div>
-    <%= error_span(@question[:choice4]) %>
+  
+  <div class="field">
+    <%= f.text_field :image, autofocus: true, :placeholder => "تصویر", :class => 'required form-control', :required => 'required' %>
   </div>
 
+  <div class="field">
+    <%= f.text_field :answer, autofocus: true, :placeholder => "پاسخ", :class => 'required form-control', :required => 'required' %>
+  </div>
+  
+  <div class="field">
+    <%= f.text_field :choice1, autofocus: true, :placeholder => "گزینه ی اول", :class => 'required form-control', :required => 'required' %>
+  </div>
+  
+  <div class="field">
+    <%= f.text_field :choice2, autofocus: true, :placeholder => "گزینه ی دوم", :class => 'required form-control', :required => 'required' %>
+  </div>
+  
+  <div class="field">
+    <%= f.text_field :choice3, autofocus: true, :placeholder => "گزینه ی سوم", :class => 'required form-control', :required => 'required' %>
+  </div>
 
-  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <div class="field">
+    <%= f.text_field :choice4, autofocus: true, :placeholder => "گزینه ی چهارم", :class => 'required form-control', :required => 'required' %>
+  </div>
+  
+  <div class="field">
+  <%= f.select :categories, Category.all.collect(&:name) %>
+  </div>
+  <%= f.submit t(:create_question), :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             questions_path, :class => 'btn btn-default' %>
 

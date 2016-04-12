@@ -1,35 +1,40 @@
+<script>
+$(document).ready(function(){
+    $(".dropdown").hover(
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+            $(this).toggleClass('open');
+        },
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+            $(this).toggleClass('open');
+        }
+    );
+});
+</script>
 <%- model_class = Category -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', :default => "دسته ها" %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- tables are not layouting tools, use divs. you have bootstrap-->
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= link_to category.id, category_path(category) %></td>
-        <td><%= category.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_category_path(category), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      category_path(category),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  <%= will_paginate @categories, :previous_label => t(:previous), :next_label => t(:next) %>
-  </tbody>
-</table>
+  <div class="admission">
+     <div class="container">
+       <div class="faculty_top">
+        <% @categories.each do |category| %>
+            <div class="col-sm-3 faculty_grid">
+              <figure class="team_member">
+                <%= image_tag category.image, :class => "img-responsive wp-post-image", :alt => "" %>
+                <div></div>
+                <figcaption><h3 class="person-title"><%= link_to category.name, category %></h3>
+                  <p></p>
+                 </figcaption>
+               </figure>
+            </div>
+        <% end %>
+        <div class="clearfix"> </div>
+    </div>
+    <%= will_paginate @categories, :previous_label => t(:previous), :next_label => t(:next) %>
+    </div>
+  </div>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_category_path,
