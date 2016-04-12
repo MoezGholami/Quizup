@@ -2,6 +2,25 @@
   # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
   fa:
+    breadcrumbs:
+      application:
+        root: "همه"
+      pages:
+        pages: "صفحات"
+    helpers:
+      actions: "عملیات"
+      links:
+        back: "بازگشت"
+        cancel: "لغو"
+        confirm: "آیا مطمئنید؟"
+        destroy: "حذف"
+        new: "جدید"
+        edit: "ویرایش"
+      titles:
+        edit: "ویرایش %{model}"
+        save: "ذخیره %{model}"
+        new: "%{model} جدید"
+        delete: "حذف %{model}"
     devise:
       confirmations:
         confirmed: ".نشانی ایمیل شما با موفقیت تایید تایید شد"
@@ -103,3 +122,9 @@
     forgot_password: "آیا رمز عبور خود را فراموش کرده اید؟"
     confirmation_instructions_not_received: "ایمیل تایید دریافت نکرده اید؟"
     remember_me: "مرا به خاطر بسپار"
+    name: "نام"
+    image: "تصویر"
+    previous: "قبلی"
+    next: "بعدی"
+    questionTitle: "متن سوال"
+    created_at: "تاریخ ایجاد"

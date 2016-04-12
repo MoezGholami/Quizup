@@ -4,12 +4,14 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.paginate(page: params[:page], per_page: 8)
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @category = Category.find(params[:id])
+    @questions = @category.questions.paginate(page: params[:page], per_page: 15)
   end
 
   # GET /categories/new
@@ -69,6 +71,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.fetch(:category, {})
+      params.require(:category).permit(:image, :name)
     end
 end
