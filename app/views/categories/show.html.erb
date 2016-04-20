@@ -10,6 +10,12 @@
           <%= submit_tag t(:question_search), :name => nil %>
       <% end %>
     </div>
+    <% if ! @userrank.nil? then%>
+      <% @userrank.each do |userrank| %>
+        <h3>First name:<%=  userrank.user.firs_name %> Score:<%= userrank.score%></h3>
+          <br>
+      <% end %>
+    <% end%>
   </div>
 <%= render 'questions/index' %>
 <%= will_paginate @questions, :previous_label => t(:previous), :next_label => t(:next) %>

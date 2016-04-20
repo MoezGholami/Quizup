@@ -15,6 +15,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category=Category.find(params[:id])
+    @userrank= UserRank.find_by_category_id(params[:id])
+    if(! @userrank.nil? )
+      @userrank= UserRank.where(:category_id => params[:id]).order("score DESC").limit(4)
+    end
+
     if(params.has_key?(:q_title))
       @questions=@category.questions.where('questionTitle like ?', '%'+params[:q_title]+'%').paginate(:page => params[:page], per_page: 15)
     else
