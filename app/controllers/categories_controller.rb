@@ -15,6 +15,10 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category=Category.find(params[:id])
+    puts "@@@@@@@@@@@@@@alan injast@@@@@@@@@@@@@@@@@@@@"
+    #UserRank.create(:user_id=>User.find_by_email(current_user.email).id.to_i,:category_id=>params[:id],:score=>params[:score].to_i)
+    puts User.find_by_email(current_user.email).id.to_i
+    puts "@@@@@@@@@@@@@@ finished @@@@@@@@@@@@@@@@@@@@"
     @userrank= UserRank.find_by_category_id(params[:id])
     if(! @userrank.nil? )
       @userrank= UserRank.where(:category_id => params[:id]).order("score DESC").limit(4)
