@@ -8,16 +8,30 @@
 
 def seed_users_idempotent
   if User.where(firs_name: 'غلام').empty?
-    gholam=User.new(firs_name:'غلام', last_name:'غلامی', email:'gholam@cafequiz.ir', sex:'مذکر',
-                    country:'ایران', password:'123456789', password_confirmation:'123456789')
-    gholi=User.new(firs_name:'غقلی' , last_name:'قلوایی', email:'gholi@cafequiz.ir', sex:'مذکر',
-                   country:'ایران', password:'123456789', password_confirmation:'123456789')
+    gholam=User.new(firs_name:'غلام', last_name:'غلامی', email:'gholam@cafequiz.ir',
+										sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
+    gholi=User.new(firs_name: 'قلی', last_name:'قلوایی', email:'gholi@cafequiz.ir',
+									 	sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
+		ghamar=User.new(firs_name: 'قمر', last_name: 'قمری', email:'ghamar@cafequiz.ir',
+										sex:'مونث', country:'ایران', password:'123456789', password_confirmation:'123456789')
+		taghi=User.new(firs_name: 'تقی', last_name: 'تفوی', email:'taghi@cafequiz.ir',
+									 	sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
+		naghi=User.new(firs_name: 'نقی', last_name: 'نقوی', email:'naghi@cafequiz.ir',
+									 sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
+
+
 
     gholam.skip_confirmation!
     gholi.skip_confirmation!
+		ghamar.skip_confirmation!
+		taghi.skip_confirmation!
+		naghi.skip_confirmation!
 
     gholam.save!
     gholi.save!
+		ghamar.save!
+		taghi.save!
+		naghi.save!
 
     puts 'users seeded'
   else
