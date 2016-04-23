@@ -11,5 +11,9 @@
       <% end %>
     </div>
   </div>
+  <br>
+  <div class="row text-center">
+  <%= button_to "مسابقه دادن", '/make_quiz', :params => {:id => @category.id}, :class => "btn btn-primary btn-lg1",:method => :get  %>
+  </div>
 <%= render 'questions/index' %>
 <%= will_paginate @questions, :previous_label => t(:previous), :next_label => t(:next) %>

@@ -27,6 +27,7 @@ gem 'devise'
 gem "recaptcha", require: "recaptcha/rails"
 gem "mailcatcher"
 gem 'will_paginate', '~> 3.0.6'
+gem 'gon'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
