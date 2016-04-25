@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   resources :questions
   resources :categories
-  resources :tasks
 
   root :to => "home#index"
 
