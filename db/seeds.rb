@@ -99,3 +99,13 @@ if Rails.env.development?
 	seed_questions_idempotent
 	puts 'seeding done'
 end
+
+if Rails.env.production?
+	# caution: this function works on production environment
+	# be careful when seeding production db
+	puts 'warning: seeding on production environment.'
+	seed_users_idempotent
+	seed_categories_idempotent
+	seed_questions_idempotent
+	puts 'seeding done'
+end
