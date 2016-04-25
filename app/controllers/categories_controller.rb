@@ -15,8 +15,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category=Category.find(params[:id])
-    puts "@@@@@@@@@@@@@@alan injast@@@@@@@@@@@@@@@@@@@@"
-    #UserRank.create(:user_id=>User.find_by_email(current_user.email).id.to_i,:category_id=>params[:id],:score=>params[:score].to_i)
+
+    if(params.has_key?(:score))
+      puts "@@@@@@@@@@@@@@ # Create @@@@@@@@@@@@@@@@@@@@"
+      UserRank.create(:user_id=>User.find_by_email(current_user.email).id.to_i,:category_id=>params[:id],:score=>params[:score].to_i)
+    end
     puts User.find_by_email(current_user.email).id.to_i
     puts "@@@@@@@@@@@@@@ finished @@@@@@@@@@@@@@@@@@@@"
     @userrank= UserRank.find_by_category_id(params[:id])
