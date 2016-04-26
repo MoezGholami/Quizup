@@ -1,0 +1,83 @@
+body {
+  max-width: 100%;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 1em auto;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.5em auto;
+}
+
+.clearfix {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+.product {
+  @extend .clearfix;
+  /*background-color: #fff;*/
+  display: inline-block;
+  padding: 2%;
+  width: 29%;
+  .thumb {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+  }
+  .stats {
+    .label {
+      display: inline-block;
+      font-weight: bold;
+      width: 40%;
+    }
+    .content {
+      display: inline-block;
+      width: 60%;
+    }
+    &>li {
+      padding: 0.5em;
+      &:nth-child(even) {
+        background-color: white;
+      }
+      &:nth-child(odd) {
+        background-color: #ddd;
+      }
+      span {
+        vertical-align: top;
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    display: block;
+    margin: 1em auto;
+    position: relative;
+    width: auto;
+    .thumb {
+      max-width: 15%;
+      position: absolute;
+    }
+    .stats {
+      margin-left: 20%;
+    }
+  }
+  @media screen and (min-width:601px) and (max-width: 800px), screen and (max-width: 400px){
+    .stats {
+      .label, & .content {
+        display: block;
+        width: auto;
+      }
+      .label {
+        margin: 0.25em auto;
+      }
+    }
+  }
+}

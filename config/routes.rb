@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'make_quiz' => 'quizzes#make_quiz'
   get 'reload_quiz' => 'quizzes#reload_quiz'
   get 'update_user_score_in_category' => 'quizzes#update_user_score_in_category'
-  get 'results' => 'quizzes#show_results'
+  get 'show_results' => 'quizzes#show_results'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

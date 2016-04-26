@@ -21,6 +21,16 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 	content_$.hide();
 	content_$.find('.solution').hide();
 
+	function getParameterByName(name, url) {
+	    if (!url) url = window.location.href;
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+
 	var endOfGame = function() {
 
 		var feedBack_num;
@@ -29,31 +39,46 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 		var score_num = content_$.children('[success_bool="true"]').length;
 
 		var score_str = score_num + "/" + context.questions_num;
+		$.ajax({
+            url: '/show_results',
+            data: {'score':score_num, 'url': $(location).attr('href')},
+            dataType: 'html',
+            success : function(result){
+                // alert(result);
+            }
+        });
 		display_$.show();
 		display_$.append(context.endScreen_$);
 		endScreen_$.css('visibility', 'visible');
+		var address = $(location).attr('href');
+		if(address.indexOf("make_quiz") > -1){
+			console.log("make_quize");
+			endScreen_$.find('.result1').text("امتیاز: " + score_num);
+			endScreen_$.find('.result2').text("امتیاز: 0");
+		}
+		else if(address.indexOf("reload_quiz") > -1){
+			endScreen_$.find('.result1').text("امتیاز: " + getParameterByName("score", $(location).attr('href')));
+			endScreen_$.find('.result2').text("امتیاز: " + score_num);
+		}
+		// feedBackList_$.each(function(index, element) {
+		// 	if (score_num <= Number($(element).attr("max"))) {
 
-		endScreen_$.find('.result').text(score_str);
+		// 		feedBack_num = index;
+		// 	}
 
-		feedBackList_$.each(function(index, element) {
-			if (score_num <= Number($(element).attr("max"))) {
+		// });
 
-				feedBack_num = index;
-			}
+		// feedBackList_$.each(function(index, element) {
+		// 	if (index === feedBack_num) {
+		// 		$(element).show();
+		// 	} else {
+		// 		$(element).hide();
+		// 	}
 
-		});
-
-		feedBackList_$.each(function(index, element) {
-			if (index === feedBack_num) {
-				$(element).show();
-			} else {
-				$(element).hide();
-			}
-
-		});
+		// });
 
 		$('#timer').hide();
-		endScreen_$.show(300);
+		endScreen_$.show(600);
 
 		if (!isMobile.any()) {
 			$('#endNav a').height($($('#endNav a')[0]).height());
@@ -131,7 +156,7 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 		displayFeedBack(false);
 	};
 	this.afficheQuestion = function(selectedQuestion_$) {
-
+		
 		questionSet_$ = selectedQuestion_$;
 		var solution_$ = questionSet_$.find(".solution");
 		var responseList_$ = $(questionSet_$.find(".response"));

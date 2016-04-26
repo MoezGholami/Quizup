@@ -27,35 +27,43 @@
 
     </div>
 </div>
-
 <div id="endScreen">
-    <div class='result'>
-        result
+    <h1 align="center">نتایج مسابقه</h1>
+    <div class="product">
+    <% if @score1.to_i < @score2.to_i %>
+        <h2 align="center">بازنده</h2>
+    <% else %>
+        <h2 align="center">برنده</h2>
+    <% end %>
+      <h3 align="center">نام: <%= current_user.firs_name %><h3>
+      <% if @score1.to_i < @score2.to_i %>
+        <img align="center" src="/assets/fail.png" style="margin_right:20px;"/>
+      <% else %>
+        <img align="center" src="/assets/pass.jpg" style="margin_right:20px;"/>
+      <% end %>
+      <h2 class="result1" align="center">امتیاز: <%= @score1 %></h2> 
+      
     </div>
-    <div max = '6' class='feedBackEnd'>
-        Pas terrible… Vous pouvez mieux faire !
-        <p>
-            N’hésitez pas à refaire ce quiz autant de fois que nécessaire.
-            <p>
-                Le gouvernement souhaite veiller davantage au respect des obligations en matière de lutte contre le blanchiment. Les contrôles seront donc inévitables. Aussi, l’IPI organise des formations pour vous familiariser de manière concrète à la législation en vigueur.
+    <div class="product" style="visibility: hidden;"></div>
+
+    <div class="product">
+    <% if @score1.to_i > @score2.to_i %>
+        <h2 align="center">بازنده</h2>
+    <% else %>
+        <h2 align="center">برنده</h2>
+    <% end %>
+       <h3 align="center">نام: <% if @rival != nil %> <%= @rival.firs_name %> <% end %> </h3>
+      <% if @score1.to_i > @score2.to_i %>
+        <img align="center" src="/assets/fail.png" style="margin_right:20px;"/>
+      <% else %>
+        <img align="center" style="margin_right:20px;" src="/assets/pass.jpg"/>
+      <% end %>
+      <h2 class="result2" align="center">امتیاز: <%= @score2 %></h2> 
     </div>
-
-    <div max = '4' class='feedBackEnd'>
-        Ouille…  Vos connaissances sont insuffisantes. N’hésitez pas à refaire ce quiz autant de fois que nécessaire.
-        <p>
-            Le gouvernement souhaite veiller davantage au respect des obligations en matière de lutte contre le blanchiment. Les contrôles seront donc inévitables. Aussi, l’IPI organise des formations pour vous familiariser de manière concrète à la législation en vigueur.
+    <div id="labels">
+        <span id = 'true'>عالی!</span>
+        <span id = 'false'>چه بد!</span>
     </div>
-
-    <div id='endNav'>
-        <a class='button' target ='_blank'  href='http://www.ipi.be/admin/userfiles/file/FR/Nouveau%20site/Textes%20juridiques/Legislation%20en%20matiere%20de%20blanchiment%20argent_130321.pdf' id='infoButton'>Connaître vos obligations en matière de blanchiment</a>
-        <a class='button' target ='_blank' href= 'http://www.ipi.be/NV_2_N_3.php?lingua=FR' id='inscriptionButton'>Inscription aux formations</a>
-    </div>
-
-</div>
-
-<div id="labels">
-    <span id = 'true'>عالی!</span>
-    <span id = 'false'>چه بد!</span>
 </div>
 
 <div id="data">
