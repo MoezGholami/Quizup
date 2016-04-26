@@ -30,11 +30,13 @@ $(document).ready(function(){
                </figure>
             </div>
         <% end %>
+
         <div class="clearfix"> </div>
     </div>
     <%= will_paginate @categories, :previous_label => t(:previous), :next_label => t(:next) %>
     </div>
   </div>
+
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_category_path,
