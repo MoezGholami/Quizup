@@ -1,0 +1,92 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height, user-scalable=false">
+
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+<link href ='/assets/reset.css' rel='stylesheet' type='text/css'>
+<link href ='/assets/quizz.css' rel='stylesheet' type='text/css'>
+
+<script>
+    var lg = 'fa';
+</script>
+
+<script src="/assets/jquery.min.js"></script>
+
+
+<!--files from the quiz-->
+<script src="/assets/jb/devtools/utils.js"></script>
+<script src="/assets/jb/maths/conversions.js"></script>
+<script src="/assets/jb/game/timer.js"></script>
+<script src="/assets/jb/game/quizz.js"></script>
+<script src="/assets/jb/implementations/quizz_ipi.js"></script>
+<script src="/assets/jb/animation/spriteAnimation.js"></script>
+
+<div class='page' id='intro'>
+
+    <div id="userTracks"></div> <div id ='timer'></div>
+    <div id = 'content'>
+
+    </div>
+</div>
+<div id="endScreen">
+    <h1 align="center">نتایج مسابقه</h1>
+    <div class="product">
+    <% if @score1.to_i < @score2.to_i %>
+        <h2 align="center">بازنده</h2>
+    <% else %>
+        <h2 align="center">برنده</h2>
+    <% end %>
+      <h3 align="center">نام: <%= current_user.firs_name %><h3>
+      <% if @score1.to_i < @score2.to_i %>
+        <img align="center" src="/assets/fail.png" style="margin_right:20px;"/>
+      <% else %>
+        <img align="center" src="/assets/pass.jpg" style="margin_right:20px;"/>
+      <% end %>
+      <h2 class="result1" align="center">امتیاز: <%= @score1 %></h2> 
+      
+    </div>
+    <div class="product" style="visibility: hidden;"></div>
+
+    <div class="product">
+    <% if @score1.to_i > @score2.to_i %>
+        <h2 align="center">بازنده</h2>
+    <% else %>
+        <h2 align="center">برنده</h2>
+    <% end %>
+       <h3 align="center">نام: <% if @rival != nil %> <%= @rival.firs_name %> <% end %> </h3>
+      <% if @score1.to_i > @score2.to_i %>
+        <img align="center" src="/assets/fail.png" style="margin_right:20px;"/>
+      <% else %>
+        <img align="center" style="margin_right:20px;" src="/assets/pass.jpg"/>
+      <% end %>
+      <h2 class="result2" align="center">امتیاز: <%= @score2 %></h2> 
+    </div>
+    <div id="labels">
+        <span id = 'true'>عالی!</span>
+        <span id = 'false'>چه بد!</span>
+    </div>
+</div>
+
+<div id="data">
+    <% @questions.each_with_index do |question, counter| puts question.questionTitle%>
+        <div class="questionSet" test='<% counter+1 %>'>
+            <div class="question">
+               <%= question.questionTitle %>
+            </div>
+            <div class="response">
+                <%= question.choice1 %>
+            </div>
+            <div class="response">
+                <%= question.choice2 %>
+            </div>
+            <div class="response">
+                <%= question.choice3 %>
+            </div>
+            <div class="response">
+                <%= question.choice4 %>
+            </div>
+            <div class="solution">
+                <%= question.answer %>
+            </div>
+        </div>
+    <%  end %>
+</div>

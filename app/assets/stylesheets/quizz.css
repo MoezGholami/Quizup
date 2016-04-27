@@ -1,0 +1,258 @@
+@charset "utf-8";
+/* CSS Document */
+html {
+	height: 100%;
+}
+
+body {
+	cursor: default;
+	font-family: 'Roboto Condensed', sans-serif;
+	color: #FFF;
+	font-weight: 400;
+	background: #ffffff;
+	background-repeat: repeat-x;
+	/* Old browsers */
+
+}
+dummy {
+	background: -moz-linear-gradient(top,  #ffffff 92%, #dddddd 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(76%,#ffffff), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 92%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 92%,#dddddd 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 92%,#dddddd 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 92%,#dddddd 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 );
+	background-repeat: no-repeat;
+}
+
+a {
+	cursor: pointer;
+}
+
+.button {
+	font-weight: 400;
+	font-size: 18px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #FFF;
+	color: #0086B5;
+	padding: 10px 36px 10px 36px;
+	border-radius: 12px;
+	cursor: pointer;
+	background: #f4f4f4; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f4f4f4 0%, #ffffff 32%, #dddddd 87%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4f4f4), color-stop(32%,#ffffff), color-stop(87%,#dddddd)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f4f4f4 0%,#ffffff 32%,#dddddd 87%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f4f4f4 0%,#ffffff 32%,#dddddd 87%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f4f4f4 0%,#ffffff 32%,#dddddd 87%); /* IE10+ */
+	background: linear-gradient(to bottom,  #f4f4f4 0%,#ffffff 32%,#dddddd 87%); /* W3C */
+	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#dddddd',GradientType=0 );  IE6-9 */
+
+	box-shadow: 0px 4px 5px #006F94;
+}
+.button:hover {
+	background: #ddd;
+	border-color: #fff;
+	border-style: solid;
+	color: #333;
+	box-shadow: none;
+}
+p {
+	padding-bottom: 5px;
+}
+.page {
+	/*margin-top: 66px;*/
+	font-size: 16px;
+	width: 100%;
+	height: 600px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #46D1FF;
+	border-radius: 18px;
+	background-color: #007095;
+	background: url('/assets/bg.jpg');
+	background-repeat: repeat-x;
+	padding: 34px 36px 36px 36px;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 150%;
+	box-shadow: 0px 15px 5px #eeeeee;
+	background-color: #007095;
+}
+.largeFonts {
+	background-color: #C00;
+	font-size: 40px;
+}
+
+.logo {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+}
+
+h1 {
+
+	font-size: 26px;
+	font-weight: 400;
+	text-align: center;
+	padding-bottom: 14px;
+	border-bottom: #FFF;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	margin-bottom: 14px;
+}
+#userTracks .filled {
+	box-shadow: 0px 3px 10px #006F94;
+}
+
+#userTracks {
+
+}
+
+#timer div {
+
+	margin-left: auto;
+	margin-right: auto;
+}
+#timer {
+	display: block;
+	text-align: center;
+	padding: 12px;
+}
+#startButton {
+	margin-top: 12px;
+	float: right;
+}
+
+
+
+/*quizz */
+.feedBack {
+	width: 88px;
+	height: 88px;
+	padding-top: 25px;
+	background-repeat: no-repeat;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	position: fixed;
+	/*-webkit-transform: rotate(45deg);
+	 -moz-transform: rotate(45deg);
+	 -ms-transform: rotate(45deg);
+	 transform: rotate(45deg);
+	 */
+
+}
+
+.question {
+	line-height: 120%;
+	font-size: 16px;
+	margin-bottom: 12px;
+}
+.response {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 120%;
+	margin-bottom: 10px;
+	text-align: center;
+	padding: 5px;
+	margin-top: 3px;
+	border-radius: 6px;
+	border-style: solid;
+	border-width: 2;
+	border-style: solid;
+	border-width: 2px;
+	width: 100%;
+}
+
+.true {
+
+	background: #00c500; /* Old browsers */
+	background: -moz-linear-gradient(top,  #00c500 0%, #00c500 42%, #009900 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00c500), color-stop(42%,#00c500), color-stop(100%,#009900)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #00c500 0%,#00c500 42%,#009900 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #00c500 0%,#00c500 42%,#009900 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #00c500 0%,#00c500 42%,#009900 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #00c500 0%,#00c500 42%,#009900 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c500', endColorstr='#009900',GradientType=0 ); /* IE6-9 */
+	border-color: #005E00;
+}
+.false {
+	color: #FFF;
+	background: #ff6363; /* Old browsers */
+	background: -moz-linear-gradient(top, #ff6363 1%, #ff6363 42%, #fe0000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ff6363), color-stop(42%,#ff6363), color-stop(100%,#fe0000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ff6363 1%,#ff6363 42%,#fe0000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ff6363 1%,#ff6363 42%,#fe0000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ff6363 1%,#ff6363 42%,#fe0000 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #ff6363 1%,#ff6363 42%,#fe0000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff6363', endColorstr='#fe0000',GradientType=0 ); /* IE6-9 */
+	border-color: #CC3300;
+	color: #FFF;
+}
+.missedTrue {
+	color: #00C500;
+	border-color: #00C500;
+	background-color: #FFF;
+}
+
+.unsellectedFalse {
+	background-color: #89C2D5;
+	border-color: #0086B5;
+	color: #0086B5;
+}
+
+#data {
+	display:none; 
+	Xvisibility: hidden;
+}
+#labels {
+	display:none; 
+	Xvisibility: hidden;
+}
+#endScreen {
+	display:none; 
+	Xvisibility: hidden;
+}
+
+.feedBackEnd {
+	margin-top: 36px;
+	margin-bottom: 18px;
+}
+
+#endNav a {
+	display: table-cell;
+	XXwidth: 200px;
+	text-decoration: none;
+	text-align: center;
+	font-size: 16px;
+	padding: 10px;
+	width:100%; 
+}
+#infoButton {
+	background: none;
+	color: #FFF;
+	float: left;
+}
+#inscriptionButton {
+	float: right;
+}
+
+#playAgain {
+	float: right;
+	cursor: pointer;
+}
+
+#playAgain:hover {
+	float: right;
+	color: #9DE7FF;
+}
+
+.result {
+
+	text-align: center;
+	font-size: 60px;
+	font-weight: 400;
+	margin-top: 36px;
+}
+
