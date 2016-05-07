@@ -56,3 +56,4 @@ target/
 
 # Moez
 Gemfile.lock
+.rspec

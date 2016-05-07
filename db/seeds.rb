@@ -99,3 +99,11 @@ if Rails.env.development?
 	seed_questions_idempotent
 	puts 'seeding done'
 end
+
+if Rails.env.test?
+	puts 'seeding on test environment.'
+	seed_users_idempotent
+	seed_categories_idempotent
+	seed_questions_idempotent
+	puts 'seeding done'
+end
