@@ -16,5 +16,7 @@
 //= require turbolinks
 //= require_tree .
 //= require websocket_rails/main
-var dispatcher = new WebSocketRails('localhost:3000/websocket');
+var websocketadr=  ((document.URL.split('/'))[2])+'/websocket';
+var dispatcher = new WebSocketRails(websocketadr);
+
 
