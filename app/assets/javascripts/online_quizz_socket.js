@@ -15,3 +15,6 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+//= require websocket_rails/main
+var dispatcher = new WebSocketRails('localhost:3000/websocket');
+
