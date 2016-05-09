@@ -1,4 +1,6 @@
 Rails.application.configure do
+
+  config.default_url_options = { host: 'cafequiz.ir', port: 80 }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -43,7 +45,7 @@ Rails.application.configure do
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
-  config.action_mailer.default_url_options = { host: 'cafequiz.ir', port: 80 }
+  config.action_mailer.default_url_options = config.default_url_options
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {:address => 'cafequiz.ir', :port => 25} 
   config.action_mailer.delivery_method = :sendmail

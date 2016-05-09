@@ -59,4 +59,5 @@ end
 group :test do
 	gem 'capybara'
 	gem 'rspec-rails'
+	gem 'factory_girl_rails'
 end
