@@ -190,6 +190,14 @@ h1 {
 	border-color: #CC3300;
 	color: #FFF;
 }
+
+.rival-answer {
+	border-color: #000000;
+	border-width: 5px;
+	background-color: #89C2D5;
+	color: #0086B5;
+}
+
 .missedTrue {
 	color: #00C500;
 	border-color: #00C500;

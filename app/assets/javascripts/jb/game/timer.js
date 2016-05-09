@@ -18,9 +18,7 @@ var Timer_jb = function(display_$, time_sec, animation) {"use strict";
 
 	};
 	this.stop = function() {
-
 		clearInterval(interval);
-
 	};
 	function display(num_mil) {
 
@@ -38,10 +36,11 @@ var Timer_jb = function(display_$, time_sec, animation) {"use strict";
 
 
 	this.reset = function() {
+		var answer_time = originalTime_mil - startTime_mil;;
 		clearInterval(interval);
 		startTime_mil = originalTime_mil;
 		updateTimer();
-
+		return answer_time;
 	};
 
 	function updateTimer() {

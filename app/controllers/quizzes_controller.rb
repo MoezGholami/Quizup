@@ -8,13 +8,38 @@ class QuizzesController < ApplicationController
 	end
 
 	def reload_quiz
-		@questions = Question.find params[:questions].split(',')
-		gon.questions = @questions
-		gon.compettitor = params[:user_id]
-		@rival = User.find(params[:user_id])
-		respond_to do |format|
-	        format.html { render "quizzes/quiz", notice: "" }
-	    end
+		puts params[:rival_user_id] == current_user.id
+		@question_answer = '{'
+		if(current_user.id.to_s == params[:rival_user_id].to_s)
+			@questions = []
+			(0..(params[:num].to_i-1)).each do |i| 
+				q = params["q"+i.to_s].split(',')
+				@questions.push(Question.find(q[0]))
+				if i == 0
+					@question_answer += '"' + q[0].to_s + '":' + q[1].to_s
+				else
+					@question_answer += ',"' + q[0].to_s + '":' + q[1].to_s 
+				end
+			end
+			@question_answer += '}'
+
+			# gon.questions = @questions
+			# gon.compettitor = params[:user_id]
+			gon.question_answer = @question_answer
+			@rival = User.find(params[:user_id])
+			@questions.each do |question| 
+				puts "question " + question.id.to_s
+			end
+			respond_to do |format|
+		        format.html { render "quizzes/quiz", notice: "" }
+		    end
+		else
+			respond_to do |format|
+		        format.html { render "quizzes/permission_denied", notice: " شما مجاز به انجام این کوییز نیستید" }
+		    end
+		end
+
+		
 	end
 
 	def update_user_score_in_category
@@ -36,7 +61,15 @@ class QuizzesController < ApplicationController
 					@rival = User.offset(rand(User.count)).first
 				end
 				@score1 = params[:score]
-				@quiz_url = "http://www.cafequiz.ir/reload_quiz?questions=" + @questions[0]['id'].to_s + "," + @questions[1]['id'].to_s + "," + @questions[2]['id'].to_s + "," + @questions[3]['id'].to_s + "," + @questions[4]['id'].to_s + "&user_id=" + current_user.id.to_s + "&score=" + params[:score]
+				question_answer = params[:questions]
+				@quiz_url = "http://www.cafequiz.ir/reload_quiz?"
+				puts question_answer 
+				question_answer.each do |index, qa|
+					puts qa
+					puts index
+					@quiz_url += "q" + index.to_s + "=" + qa["qid"].to_s + "," + qa["resp"] + "&"
+				end
+				@quiz_url += "num=" + question_answer.length.to_s + "&rival_user_id=" + @rival.id.to_s + "&user_id=" + current_user.id.to_s + "&score=" + params[:score]
 				QuizzMailer.offline_quizz_announce_email(@rival, @quiz_url).deliver_now
 			elsif(params[:url].include? "reload_quiz")
 				uri = URI::parse(params[:url])

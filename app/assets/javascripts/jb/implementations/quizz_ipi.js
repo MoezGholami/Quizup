@@ -37,8 +37,9 @@ function startQuiz() {"use strict";
 	timer = new Timer_jb($('#timer'), 10, clock);
 
 	quizz.onQuestionAnswer = function() {
-		timer.reset();
+		var answer_time = timer.reset();
 		timer.stop();
+
 		if (falseSound !== undefined) {
 
 			if (!quizz.success_bool) {
@@ -50,6 +51,7 @@ function startQuiz() {"use strict";
 
 			}
 		}
+		return answer_time;
 
 	};
 	quizz.onStartQuestion = function() {
@@ -67,51 +69,9 @@ function startQuiz() {"use strict";
 
 
 $(document).ready(function() {"use strict";
-
 	$('a').attr('target', '_blank');
 	startQuiz();
-
-	// if (isMobile.any()) {
-	// 	/*Should go in the css and be implemented with addClass*/
-		
-	// 	$('.page').width('80%');
-
-	// 	$('.page').height('100%');
-	// 	$('.page,.response,.button').css('font-size', '15px');
-	// 	$('.question').css('font-size', '15px');
-	// 	$('h1').css('font-size', '30px').css('background-repeat', 'no-repeat');
-
-	// 	$('.response').css("padding", "5px");
-	// 	$('.footer').css('color', '#FFFFFF').css('font-size', '20px');
-	// 	$('.footer a').css('color', '#FFFFFF');
-	// 	$('.page').css('margin-top', '20px');
-
-	// 	$('.page').css('border', 'none').css('box-shadow', 'none');
-
-	// 	$('.page').css('background', 'none');
-	// 	$('body').css('background-color', "#00759B");
-
-	// 	$('body').css('background-image', "url('/assets/bg.jpg')");
-	// 	$('body').css('background-repeat', 'repeat-x');
-
-	// 	$('.footer').css('margin-top', '60px').css ('font-size', '12px').css ("position", "fixed").css ("bottom", "5px");
-		
-
-	// 	$('footer').hide();
-	// 	$("#endNav").css ('display', 'none'); 
-	// } else {
-	// 	var endButtonWidth = ($('.page').width() / 2 - 50);
-	// 	$('#endNav a').width(endButtonWidth);
-	
-		
-		
-		
-	// }
 	$('.response').addClass('button');
-	
-
-	
-
 });
 
 img_json = {
