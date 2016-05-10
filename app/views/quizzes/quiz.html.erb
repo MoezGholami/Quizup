@@ -1,0 +1,95 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height, user-scalable=false">
+
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+<link href ='/assets/reset.css' rel='stylesheet' type='text/css'>
+<link href ='/assets/quizz.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/assets/result.css" type='text/css'/>
+<script>
+    var lg = 'fa';
+</script>
+
+<script src="/assets/jquery.min.js"></script>
+
+
+<!--files from the quiz-->
+<script src="/assets/jb/devtools/utils.js"></script>
+<script src="/assets/jb/maths/conversions.js"></script>
+<script src="/assets/jb/game/timer.js"></script>
+<script src="/assets/jb/game/quizz.js"></script>
+<script src="/assets/jb/implementations/quizz_ipi.js"></script>
+<script src="/assets/jb/animation/spriteAnimation.js"></script>
+
+<div class='page' id='intro'>
+
+    <div id="userTracks"></div> <div id ='timer'></div>
+    <div id = 'content'>
+
+    </div>
+</div>
+<div id="endScreen">
+<h1 align="center">نتایج مسابقه</h1>
+    <div class="progressbar" id='result1' data-perc="<%= @score1.to_i %>">
+      <div class="bar"><span></span></div>
+      <div class="label"><span></span></div>
+    </div>
+    <div class="progressbar" id='result2' data-perc="<%= @score2.to_i %>">
+      <div class="bar color3"><span></span></div>
+      <div class="label"><span></span></div>
+    </div> 
+
+
+<div style="width: 600px; margin: 0 auto; ">
+    <figure class="snip1336">
+        <img src="/assets/www.png" id='pic1' alt="sample87"/>
+      <figcaption>
+          <h3>نام: <%= current_user.firs_name %> </h3>
+          <p id='score1'>امتیاز: <%= @score1.to_i %>/100 </p>
+         <!--  <a href="#" class="follow">Profile</a>
+          <a href="#" class="info">Profile</a> -->
+      </figcaption>
+    </figure>
+</div>
+<div>
+    <figure class="snip1336">
+          <img src="/assets/www.png" id='pic2' alt="sample87"/>
+        <figcaption>
+            <h3>نام: <% if @rival != nil %> <%= @rival.firs_name %> <% end %></h3>
+            <p id='score2'>امتیاز: <%= @score2.to_i %>/100 </p>
+            <!-- <a href="#" class="follow">Profile</a>
+            <a href="#" class="info">Profile</a> -->
+        </figcaption>
+    </figure>
+</div>
+
+
+    <div id="labels">
+        <span id = 'true'>عالی!</span>
+        <span id = 'false'>چه بد!</span>
+    </div>
+</div>
+
+<div id="data">
+    <% @questions.each_with_index do |question, counter| puts question.questionTitle%>
+        <div class="questionSet" test='<% counter+1 %>' question-id='<%= question.id.to_s %>'>
+            <div class="question">
+               <%= question.questionTitle %>
+            </div>
+            <div class="response">
+                <%= question.choice1 %>
+            </div>
+            <div class="response">
+                <%= question.choice2 %>
+            </div>
+            <div class="response">
+                <%= question.choice3 %>
+            </div>
+            <div class="response">
+                <%= question.choice4 %>
+            </div>
+            <div class="solution">
+                <%= question.answer %>
+            </div>
+        </div>
+    <%  end %>
+</div>

@@ -1,0 +1,65 @@
+
+<link rel="stylesheet" href="/assets/result.css" type='text/css'/>
+<div class="page">
+<h1 align="center">نتایج مسابقه</h1>
+  <% if @score1.to_i < @score2.to_i %>
+    <div class="progressbar" data-perc="<%= @score1.to_i %>">
+      <div class="bar color3"><span></span></div>
+      <div class="label"><span></span></div>
+    </div>
+    <div class="progressbar" data-perc="<%= @score2.to_i %>">
+      <div class="bar"><span></span></div>
+      <div class="label"><span></span></div>
+    </div> 
+  <% else %>
+    <div class="progressbar" data-perc="<%= @score1.to_i %>">
+      <div class="bar"><span></span></div>
+      <div class="label"><span></span></div>
+    </div>
+    <div class="progressbar" data-perc="<%= @score2.to_i %>">
+      <div class="bar color3"><span></span></div>
+      <div class="label"><span></span></div>
+    </div>
+  <% end %>
+
+<div style="width: 600px; margin: 0 auto; ">
+    <figure class="snip1336">
+      <% if @score1.to_i > @score2.to_i %>
+        <img src="/assets/www.png" alt="sample87"/>
+      <% else %>
+        <img src="/assets/FF.png" alt="sample87"/>
+      <% end %>
+      <figcaption>
+          <h3>نام: <%= current_user.firs_name %> </h3>
+          <p>امتیاز: <%= @score1.to_i %>/100 </p>
+         <!--  <a href="#" class="follow">Profile</a>
+          <a href="#" class="info">Profile</a> -->
+      </figcaption>
+    </figure>
+</div>
+<div>
+    <figure class="snip1336">
+        <% if @score1.to_i <= @score2.to_i %>
+          <img src="/assets/FF.png" alt="sample87"/>
+        <% else %>
+          <img src="/assets/www.png" alt="sample87"/>
+        <% end %>
+        <figcaption>
+            <h3>نام: <% if @rival != nil %> <%= @rival.firs_name %> <% end %></h3>
+            <p>امتیاز: <%= @score2.to_i %>/100 </p>
+            <!-- <a href="#" class="follow">Profile</a>
+            <a href="#" class="info">Profile</a> -->
+        </figcaption>
+    </figure>
+</div>
+
+<script src="/assets/index.js"></script>
+    <div id="labels">
+        <span id = 'true'>عالی!</span>
+        <span id = 'false'>چه بد!</span>
+    </div>
+</div>
+
+
+
+

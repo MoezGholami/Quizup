@@ -18,6 +18,11 @@
           <%= submit_tag t(:question_search), :name => nil %>
       <% end %>
     </div>
+  </div>
+  <br>
+  <div class="row text-center">
+  <%= button_to "مسابقه دادن", '/make_quiz', :params => {:id => @category.id}, :class => "btn btn-primary btn-lg1",:method => :get  %>
+  </div>
 
     </div>
   <% if ! @userrank.nil? then%>

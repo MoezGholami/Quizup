@@ -33,13 +33,6 @@ ActiveRecord::Schema.define(version: 20160509111001) do
     t.integer  "category_id"
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.string   "title"
-    t.text     "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_ranks", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "category_id"
@@ -51,12 +44,12 @@ ActiveRecord::Schema.define(version: 20160509111001) do
   add_index "user_ranks", ["user_id", "category_id"], name: "index_user_ranks_on_user_id_and_category_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"

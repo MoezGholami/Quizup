@@ -8,7 +8,7 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="/">کافه کوئیز</a>
+            <a id="home" class="navbar-brand" href="/">کافه کوئیز</a>
         </div>
         <!--/.navbar-header-->
         <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
@@ -22,7 +22,7 @@
                 </li>
               <% else %>
                 <li class="dropdown">
-                    <a href="/users/sign_in"><i class="fa fa-user"></i><span>ورود</span></a>
+                    <a id="sign_in_link" href="/users/sign_in"><i class="fa fa-user"></i><span><%= t(:sign_in) %></span></a>
                 </li>
               <% end %>
               <li class="dropdown">
