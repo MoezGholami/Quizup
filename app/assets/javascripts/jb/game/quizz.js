@@ -157,21 +157,22 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 		var feedBack_$ = $('<div/>');
 		var score_num = 0;
 		var answer_time = context.onQuestionAnswer();
+		var curr_score = 0;
 		console.log("ddd" + answer_time);
 		if(success_bool === true){
 		 	questionSet_$.attr("answer_time", answer_time);
 		 	console.log(questionSet_$.attr("answer_time"));
-			
-			for(var i = 0 ; i < content_$.children('[success_bool="true"]').length ; i++){
-				// score_num += 
-				score_num += 10 - Math.round(parseInt($(content_$.children('[answer_time]')[i]).attr('answer_time'))/1000);
-			}
-			score_num += 10 - Math.round(parseInt(answer_time)/1000);
 		}
+		for(var i = 0 ; i < content_$.children('[success_bool="true"]').length ; i++){
+			// score_num += 
+			score_num += 10 - Math.round(parseInt($(content_$.children('[answer_time]')[i]).attr('answer_time'))/1000);
+		}
+		score_num += 10 - Math.round(parseInt(answer_time)/1000);
+		curr_score = 10 - Math.round(parseInt(answer_time)/1000);
 
 		feedBack_$.addClass('feedBack');
 		feedBack_$.css('background-image', "url(/assets/mark86x86000" + Number(2 + Number(success_bool)) + ".jpg)");
-		feedBack_$.text(score_num*2 + "%");
+		feedBack_$.text(curr_score*2 + "/20");
 
 		context.display_$.append(feedBack_$);
 		feedBack_$.css('left', startPoint.x).css('top', startPoint.y - 50).css('rotation', 45);

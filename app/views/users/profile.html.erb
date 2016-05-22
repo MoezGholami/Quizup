@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/assets/profile.css">
+    <div class="card">
+  <div class="content">
+    <br>
+    <div class="post ter">
+      <a href="#"> <%= render 'users/achievement' %> </a>
+    </div>
+    <div class="post ter">
+      <a href="#"> <%= render 'users/achievement' %> </a>
+    </div>
+    <div class="post ter">
+      <a href="#"> <%= render 'users/achievement' %> </a>
+    </div>
+    <div class="post ter">
+      <a href="#"> <%= render 'users/achievement' %> </a>
+    </div>
+    <div class="post ter">
+      <a href="#"> <%= render 'users/achievement' %> </a>
+    </div>
+    <div class="post ter">
+      <a href="#"> <%= render 'users/achievement' %> </a>
+    </div>
+  </div>
+  <div class="fabs">
+    <div class="fab"></div>
+    <i class="avatar zmdi zmdi-account"></i>
+  </div>
+  <div class="user">
+    <div class="profiles">
+      <div class="profile"><span>ایمیل</span><%= @user.email %></div>
+      <div class="profile"><span>نام و نام خانوادگی</span><%= @user.firs_name + " " + @user.last_name %></div>
+      <div class="profile"><span>جنسیت</span><%= @user.sex %></div>
+      <div class="profile"><span>کشور</span><%= @user.country %></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/profile.js"></script>
