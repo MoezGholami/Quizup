@@ -65,13 +65,10 @@ end
 
 
 def login_with(email, password)
-	visit '/'
-	expect(page).to have_http_status(200)
 	page.find_by_id("sign_in_link").click
 	expect(page).to have_http_status(200)
 	fill_in "user[email]", :with => email
 	fill_in "user[password]", :with => password
 	page.find_by_id("submit").click
 	expect(page).to have_http_status(200)
-	have_current_path('/')
 end
