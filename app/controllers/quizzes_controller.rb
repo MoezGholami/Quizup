@@ -76,7 +76,7 @@ class QuizzesController < ApplicationController
 				end
 				@score1 = params[:score]
 				question_answer = params[:questions]
-				@quiz_url = "http://www.cafequiz.ir/reload_quiz?"
+				@quiz_url = Rails.application.config.default_root_url+"/reload_quiz?"
 				puts question_answer 
 				question_answer.each do |index, qa|
 					puts qa
@@ -84,7 +84,7 @@ class QuizzesController < ApplicationController
 					@quiz_url += "q" + index.to_s + "=" + qa["qid"].to_s + "," + qa["resp"] + "&"
 				end
 				add_score(current_user.id, @questions[0]['category_id'], @score1.to_i)
-				@quiz_url += "num=" + question_answer.length.to_s + "&rival_user_id=" + @rival.id.to_s + "&user_id=" + current_user.id.to_s + "&score=" + params[:score] + "&category_id=" + @questions[0]['category_id'].to_s
+				@quiz_url += "num=" + question_answer.length.to_s + "&rival_user_id=" + @rival.id.to_s + "&user_id=" + current_user.id.to_s + "&score=" + params[:score]
 				QuizzMailer.offline_quizz_announce_email(@rival, @quiz_url).deliver_now
 			elsif(params[:url].include? "reload_quiz")
 				uri = URI::parse(params[:url])
@@ -92,8 +92,8 @@ class QuizzesController < ApplicationController
 				@score1 = params[:score]
 				@score2 = url_params["score"][0]
 				@rival = User.find(url_params["user_id"])[0]
-				add_score(current_user.id, url_params['category_id'][0].to_i, @score1.to_i)
-				resutlUrl = 'http://www.cafequiz.ir/show_results?score1=' + @score1 + "&score2=" + @score2 + "&user_id=" + current_user.id.to_s
+				add_score(current_user.id, Question.find(params['questions']['0']['qid']).category_id, @score1.to_i)
+				resutlUrl = Rails.application.config.default_root_url+'/show_results?score1=' + @score1 + "&score2=" + @score2 + "&user_id=" + current_user.id.to_s
 				QuizzMailer.offline_quizz_result_email(@rival, resutlUrl).deliver_now	
 			end
 

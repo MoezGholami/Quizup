@@ -1,6 +1,7 @@
 Rails.application.configure do
 
   config.default_url_options = { host: 'cafequiz.ir', port: 80 }
+	config.default_root_url = config.default_url_options[:host]
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

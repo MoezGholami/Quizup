@@ -35,7 +35,7 @@ RSpec.configure do |config|
 
   # Configure actual routes host during test
 	before(:each) do
-		default_url_options[:host] = Rails.application.config.default_url_options[:host]+':'+Rails.application.config.default_url_options[:port].to_s
+		default_url_options[:host] = Rails.application.config.default_root_url
 	end
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
