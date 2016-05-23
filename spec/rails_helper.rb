@@ -30,11 +30,12 @@ require 'capybara/rspec'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+	config.include FactoryGirl::Syntax::Methods
 	config.include Capybara::DSL
 
   # Configure actual routes host during test
 	before(:each) do
-     default_url_options[:host] = "localhost:3000"
+		default_url_options[:host] = Rails.application.config.default_url_options[:host]+':'+Rails.application.config.default_url_options[:port].to_s
 	end
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -60,4 +61,14 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+end
+
+
+def login_with(email, password)
+	page.find_by_id("sign_in_link").click
+	expect(page).to have_http_status(200)
+	fill_in "user[email]", :with => email
+	fill_in "user[password]", :with => password
+	page.find_by_id("submit").click
+	expect(page).to have_http_status(200)
 end

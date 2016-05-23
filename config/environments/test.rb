@@ -1,4 +1,6 @@
 Rails.application.configure do
+
+	config.default_url_options = { host: 'localhost', port: 3000 }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's
@@ -36,6 +38,14 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Adds additional error checking when serving assets at runtime.
+  # Checks for improperly declared sprockets dependencies.
+  # Raises helpful error messages.
+  config.assets.raise_runtime_errors = true
+	config.action_mailer.default_url_options = config.default_url_options
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {:address => 'localhost', :port => 1025}
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
