@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'update_user_score_in_category' => 'quizzes#update_user_score_in_category'
   get 'show_results' => 'quizzes#show_results'
   get '/users/profile' => 'users#show_profile'
+  get '/users/achivement' => 'users#show_achivement'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

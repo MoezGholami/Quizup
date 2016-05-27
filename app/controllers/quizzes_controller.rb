@@ -52,15 +52,7 @@ class QuizzesController < ApplicationController
 			respond_to do |format|
 		        format.html { render "quizzes/permission_denied", notice: " شما مجاز به انجام این کوییز نیستید" }
 		    end
-		end
-
-		
-	end
-
-	def update_user_score_in_category
-		@score = params[:score]
-
-		render notice: "مسابقه به پایان رسید"
+		end		
 	end
 
 	def show_results

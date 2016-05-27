@@ -5,6 +5,13 @@ class RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource_or_scope)
     session["user_return_to"] || root_path
   end
+
+  def create
+    super
+    user = User.find_by_email(params[:user][:email])
+    user.score = 0
+    user.save
+  end
   
   private
 
