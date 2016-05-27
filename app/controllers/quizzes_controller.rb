@@ -11,6 +11,7 @@ class QuizzesController < ApplicationController
 			new_rank.score=new_rank.score+this_score
 			new_rank.save!
 		end
+		current_user.score += this_score
 	end
 
 	def make_quiz
