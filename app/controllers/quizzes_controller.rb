@@ -57,6 +57,7 @@ class QuizzesController < ApplicationController
 	end
 
 	def show_results
+		@user = current_user
 		puts request.fullpath
 		@questions = flash[:questions]
 		@score1 = "0"
@@ -88,8 +89,25 @@ class QuizzesController < ApplicationController
 				@rival = User.find(url_params["user_id"])[0]
 				add_score(current_user.id, url_params['category_id'][0].to_i, @score1.to_i)
 				resutlUrl = 'http://www.cafequiz.ir/show_results?score1=' + @score1 + "&score2=" + @score2 + "&user_id=" + current_user.id.to_s + "&rival_id=" + @rival.id.to_s
-				QuizzMailer.offline_quizz_result_email(@rival, resutlUrl).deliver_now	
+				QuizzMailer.offline_quizz_result_email(@rival, resutlUrl).deliver_now
+
+				if @score2 < @score1
+					current_user.num_of_wins += 1
+					puts("##################### 22 ######################")
+				end
+				  puts"@@@@ mehrdad"
+				puts current_user.num_of_games
+				puts"@@@@@ end"
+					current_user.num_of_games += 1
+					current_user.score += @score1.to_i
+					current_user.save!
+				puts"@@@@ omid"
+				puts current_user.num_of_games
+				puts"@@@@@ end"
+
+
 			end
+
 			respond_to do |format|
     			format.html { render "quizzes/results" }
 			end	
@@ -99,18 +117,16 @@ class QuizzesController < ApplicationController
 				puts User.find(params[:user_id])
 				@score1 = params[:score1]
 				@score2 = params[:score2]
+
 				if @score2 > @score1
 					current_user.num_of_wins += 1
-				elsif @score2 < @score1
-					@rival.num_of_wins += 1
+					puts("##################### 44 ######################")
 				end
+				puts("##################### 55 ######################")
 				current_user.num_of_games += 1
-				@rival.num_of_games += 1
-				current_user.score += @score2
-				@rival.score += @score1
-				current_user.save
-				@rival.save
-				
+				current_user.score += @score2.to_i
+				current_user.save!
+
 				respond_to do |format|
 	    			format.html { render "quizzes/results" }
 				end
@@ -120,5 +136,27 @@ class QuizzesController < ApplicationController
 				end
 			end	
 		end
-	end
+		if(current_user.score >= 1000 and current_user.acheivements.find(1) == nil)
+			current_user.acheivements << Acheivement.find(1)
+		end
+
+		if(current_user.num_of_wins >= 2 and current_user.acheivements.find(2) == nil)
+			current_user.acheivements << Acheivement.find(2)
+			puts "aaaaaaaaaaaaaaaaffffffffffffffffff"
+		end
+
+		if(current_user.num_of_games >= 10 and current_user.acheivements.find(3) ==nil)
+			current_user.acheivements << Acheivement.find(3)
+		end
+
+		if(current_user.acheivements.size() > 2  and current_user.acheivements.find(4) == nil)
+			current_user.acheivements << Acheivement.find(4)
+		end
+
+		current_user.save
+
+
+		end
+
+
 end

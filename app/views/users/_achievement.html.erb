@@ -1,10 +1,12 @@
 <div class="flip-card">
 	<div class="card-front" id="card1-front">
-	  <img src="/assets/gold.png" class="logo1" />
+	  <img src="<%= achievement.image %>" class="logo1" />
 	</div>
 	<div class="card-back" id="card1-back">
 	  <div class="bar"></div>
-	  <p class="text">مشاهده ی موفقیت
+	  <p class="text"><%= achievement.name %>
 	  </p>
+    <p class="text"><%= achievement.dec %>
+    </p>
 	</div>
 </div>

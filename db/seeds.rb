@@ -10,13 +10,13 @@ def seed_users_idempotent
   if User.where(firs_name: 'غلام').empty?
     gholam=User.new(firs_name:'غلام', last_name:'غلامی', email:'gholam@cafequiz.ir',
 										sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
-    gholi=User.new(firs_name: 'قلی', last_name:'قلوایی', email:'gholi@cafequiz.ir',
+    gholi=User.new(firs_name: 'قیصر', last_name:'قیصرخان', email:'gheysar@cafequiz.ir',
 									 	sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
-		ghamar=User.new(firs_name: 'قمر', last_name: 'قمری', email:'ghamar@cafequiz.ir',
+		ghamar=User.new(firs_name: 'رامتین', last_name: 'رامتین خان', email:'ramtin@cafequiz.ir',
 										sex:'مونث', country:'ایران', password:'123456789', password_confirmation:'123456789')
-		taghi=User.new(firs_name: 'تقی', last_name: 'تفوی', email:'taghi@cafequiz.ir',
+		taghi=User.new(firs_name: 'هوشنگ', last_name: 'هوشنگ خان', email:'hoshang@cafequiz.ir',
 									 	sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
-		naghi=User.new(firs_name: 'نقی', last_name: 'نقوی', email:'naghi@cafequiz.ir',
+		naghi=User.new(firs_name: 'چنگیز', last_name: 'چنگیزخان', email:'changiz@cafequiz.ir',
 									 sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
 
 
@@ -42,14 +42,13 @@ end
 def seed_categories_idempotent
 	if Category.where(name:'کامپیوتر').empty?
 		cs=Category.new(name: 'کامپیوتر', image: 'fc.jpg'); cs.save!
-		harryPotter=Category.new(name: 'Harry Potter', image: 'fc1.jpg'); harryPotter.save!
-		history=Category.new(name:'history', image:'fc6.jpg'); history.save!
-		cinema=Category.new(name:'هنر هفتم', image:'fc7.jpg'); cinema.save!
-		sports=Category.new(name:'ورزشی', image:'fc3.jpg'); sports.save!
-		java=Category.new(name:'جاوا'); java.save!
-		forensics=Category.new(name:'جرم شناسی'); forensics.save!
-		cookery=Category.new(name:'آشپزی'); cookery.save!
-		literature=Category.new(name:'ادبیات'); literature.save!
+		history=Category.new(name:'تاریخ', image:'fc6.jpg'); history.save!
+		cinema=Category.new(name:'سینما', image:'fc7.jpg'); cinema.save!
+		sports=Category.new(name:'ورزش', image:'fc3.jpg'); sports.save!
+		earth=Category.new(name:'جغرافیا',image:'fc5.jpg'); earth.save!
+		music=Category.new(name:'موزیک',image:'fc8.jpg'); music.save!
+		art=Category.new(name:'هنر',image:'fc2.jpg'); art.save!
+		literature=Category.new(name:'ادبیات', image: 'fc1.jpg'); literature.save!
 		puts 'categories seeded'
 	else
 		puts 'categories exist, aborting seeding categories'
@@ -92,11 +91,25 @@ def seed_questions_idempotent
 
 end
 
+def seed_acheivement_idempotent
+		a1 = Acheivement.new( name:"قهرمان", dec:"به امتیاز ۱۰۰۰ رسیدی ", image:"/assets/m3.png")
+		a2 = Acheivement.new( name:"مشتی", dec:"به تعداد برد ۵ رسیدی", image:"/assets/m4.png")
+		a3 = Acheivement.new( name:"علاف و اسمان جل", dec:"از بیکاری به ۱۰ بازی در کافه کوییز رسیدی!", image:"/assets/m6.png")
+		a4 = Acheivement.new( name:"قهرمان کل", dec:"به چندین مدال دست یافتی ", image:"/assets/m۱.png")
+		a1.save!
+		a2.save!
+		a3.save!
+		a4.save!
+
+end
+
+
 if Rails.env.development?
   puts 'seeding on development environment.'
   seed_users_idempotent
 	seed_categories_idempotent
 	seed_questions_idempotent
+  seed_acheivement_idempotent
 	puts 'seeding done'
 end
 
@@ -107,6 +120,7 @@ if Rails.env.production?
 	seed_users_idempotent
 	seed_categories_idempotent
 	seed_questions_idempotent
+	seed_acheivement_idempotent
 	puts 'seeding done'
 end
 
@@ -115,5 +129,6 @@ if Rails.env.test?
 	seed_users_idempotent
 	seed_categories_idempotent
 	seed_questions_idempotent
+	seed_acheivement_idempotent
 	puts 'seeding done'
 end

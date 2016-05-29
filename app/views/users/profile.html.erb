@@ -2,24 +2,11 @@
     <div class="card">
   <div class="content">
     <br>
-    <div class="post ter">
-      <a href="#"> <%= render 'users/achievement' %> </a>
-    </div>
-    <div class="post ter">
-      <a href="#"> <%= render 'users/achievement' %> </a>
-    </div>
-    <div class="post ter">
-      <a href="#"> <%= render 'users/achievement' %> </a>
-    </div>
-    <div class="post ter">
-      <a href="#"> <%= render 'users/achievement' %> </a>
-    </div>
-    <div class="post ter">
-      <a href="#"> <%= render 'users/achievement' %> </a>
-    </div>
-    <div class="post ter">
-      <a href="#"> <%= render 'users/achievement' %> </a>
-    </div>
+    <% @user.acheivements.each do |acheivement| %>
+      <div class="post ter">
+        <a href="#"> <%= render 'users/achievement' %> </a>
+      </div>
+    <% end %>
   </div>
   <div class="fabs">
     <div class="fab"></div>
@@ -27,11 +14,11 @@
   </div>
   <div class="user">
     <div class="profiles">
-      <div class="profile" style="width:50%;"><span>ایمیل</span><%= @user.email %></div>
-      <div class="profile" ><span>امتیاز</span><%= @user.score %></div>
-      <div class="profile"><span>نام و نام خانوادگی</span><%= @user.firs_name + " " + @user.last_name %></div>
-      <div class="profile"><span>جنسیت</span><%= @user.sex %></div>
-      <div class="profile" style="width:100%;"><span>کشور</span><%= @user.country %></div>
+      <div class="profile" style="width:50%;"><span style="width:auto;height:auto;border:5px ridge skyblue;">ایمیل</span><%= @user.email %></div>
+      <div class="profile" ><span style="width:auto;height:auto;border:5px ridge skyblue;">امتیاز</span><%= @user.score %></div>
+      <div class="profile"><span style="width:auto;height:auto;border:5px ridge skyblue;">نام و نام خانوادگی</span><%= @user.firs_name + " " + @user.last_name %></div>
+      <div class="profile"><span style="width:auto;height:auto;border:5px ridge skyblue;">جنسیت</span><%= @user.sex %></div>
+      <div class="profile" style="width:100%;"><span style="width:auto;height:auto;border:5px ridge skyblue;">کشور</span><%= @user.country %></div>
     </div>
   </div>
 </div>

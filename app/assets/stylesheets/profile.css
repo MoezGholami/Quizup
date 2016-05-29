@@ -271,7 +271,7 @@ body {
   overflow: hidden;
   z-index: 2;
   transition: 0.2s cubic-bezier(.55, 0, .1, 1);
-  color: #f8f8ff;
+  color: #070707;
 }
 
 .profile>span {
