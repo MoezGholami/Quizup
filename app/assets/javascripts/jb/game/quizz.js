@@ -125,11 +125,9 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 
 		} else {
 			var selectionList_$ = context.questions_$.children('[selected_bool="false"]');
-			var random_num = Math.floor(Math.random() * selectionList_$.length);
-			var selectedQuestion_$ = $(selectionList_$[random_num]);
+			var selectedQuestion_$ = $(selectionList_$[0]);
 			selectedQuestion_$.attr("selected_bool", "true");
 			context.afficheQuestion(selectedQuestion_$);
-			// current_question_rival_answer = random_num;
 		}
 	};
 
