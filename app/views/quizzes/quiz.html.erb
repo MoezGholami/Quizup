@@ -1,3 +1,17 @@
+<div id="whole_quizz_container">
+
+<% if @isOnline %>
+			<% if @isFirst %>
+			<div id="url_for_second" hidden><%= @makeUrlForSecond %></div>
+			<% else %>
+			<script>var IAmSecond=true; </script>
+			<% end %>
+			<div id="current_category_id_container" hidden><%= @cat_id %></div>
+			<div id="current_user_id_container" hidden><%= @current_uid %></div>
+			<div id="other_user_id_container" hidden><%= @opponent_uid %></div>
+			<script src="/assets/clientSocket.js"></script>
+<% end %>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width,height=device-height, user-scalable=false">
 
@@ -92,4 +106,6 @@
             </div>
         </div>
     <%  end %>
+</div>
+
 </div>

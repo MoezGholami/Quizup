@@ -1,5 +1,3 @@
-#TODO: The URLs work only on production, repair them
-
 class QuizzesController < ApplicationController
 
 	def add_score(uid, cid, this_score)
@@ -15,6 +13,30 @@ class QuizzesController < ApplicationController
 
 	def make_quiz
 		@questions = Category.find(params[:id]).questions.limit(5).order("RANDOM()")
+		if(params.has_key?(:isOnline))
+			@cat_id=params[:id]
+			@isOnline=true
+			@isFirst=true
+			@current_uid=params[:current_uid]
+			@opponent_uid=params[:opponent_uid]
+			if(params.has_key?(:isSecond))
+				@isFirst=false
+				@questions = []
+				(0..(params[:num].to_i-1)).each do |i|
+					q = params["q"+i.to_s]
+					@questions.push(Question.find(q))
+				end
+			else
+				@makeUrlForSecond='/make_quiz?id='+params[:id]+'&isOnline=1&isSecond=1&current_uid='+@opponent_uid+'&opponent_uid='+@current_uid
+				@makeUrlForSecond=@makeUrlForSecond+'&num='+@questions.length.to_s
+				@questions.each_with_index do |question, counter|
+					@makeUrlForSecond=@makeUrlForSecond+'&q'+counter.to_s+'='+question.id.to_s
+				end
+			end
+			@rival=User.find(@opponent_uid.to_i)
+		else
+			@isOnline=false
+		end
 		flash[:questions] = @questions
 		respond_to do |format|
 	        format.html { render "quizzes/quiz", notice: "" }

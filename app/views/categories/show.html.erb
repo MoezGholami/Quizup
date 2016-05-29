@@ -1,3 +1,11 @@
+<script src="/assets/clientSocket.js"></script>
+
+<div id="whole_category_container">
+
+<div id="current_category_id_container" hidden><%= @category.id %></div>
+<div id="current_user_id_container" hidden><%= current_user.id %></div>
+<div id="other_user_id_container" hidden>0</div>
+
   <%- model_class = Category -%>
   <style>
     .user_rank {
@@ -21,14 +29,23 @@
   </div>
   <br>
   <div class="row text-center">
-  <%= button_to "مسابقه دادن", '/make_quiz', :params => {:id => @category.id}, :class => "btn btn-primary btn-lg1",:method => :get  %>
+  <%= button_to "مسابقه آفلاین", '/make_quiz', :params => {:id => @category.id}, :class => "btn btn-primary btn-lg1",:method => :get  %>
+	<br/>
+	</div>
+	<div class="row text-center">
+	<button id='online_quizz_button' onclick="clientSocket.askForOnlineMatch();" class="btn btn-primary btn-lg1">مسابقه آنلاین</button>
   </div>
-
-    </div>
+	<div class="row text-center">
+		<div class="col col-md-2 col-md-offset-5">
+			<%= image_tag '/assets/loading.gif', :class => "img-responsive wp-post-image", :alt => "", :id => 'loading_img' %>
+		</div>
+	</div>
   <% if ! @userrank.nil? then%>
       <div class="user_rank" >
   <table class="table" >
-    <thead><tr >
+    <thead>
+		<tr>قهرمانان</tr>
+		<tr >
     <th class="text-right" ><%= "اسم" %></th>
     <th class="text-right"><%= "امتیاز" %></th>
     </tr>
@@ -52,3 +69,5 @@
 
 <%= render 'questions/index' %>
 <%= will_paginate @questions, :previous_label => t(:previous), :next_label => t(:next) %>
+
+</div>

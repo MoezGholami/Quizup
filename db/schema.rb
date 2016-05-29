@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508103805) do
+ActiveRecord::Schema.define(version: 20160509111001) do
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 20160508103805) do
     t.string   "country"
     t.datetime "last_seen"
     t.boolean  "is_quizzing",            default: false
+    t.boolean  "is_online",              default: false
+    t.boolean  "is_busy",                default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
