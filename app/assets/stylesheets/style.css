@@ -33,7 +33,7 @@ body a{
 	display:block;
 }
 .navbar {
-   min-height:100%;
+   min-height:0%;
    margin-bottom:0;
 }
 .navbar-nav {

@@ -189,13 +189,12 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 		if(success_bool === true){
 		 	questionSet_$.attr("answer_time", answer_time);
 		 	console.log(questionSet_$.attr("answer_time"));
-			
-			for(var i = 0 ; i < content_$.children('[success_bool="true"]').length ; i++){
-				// score_num += 
-				score_num += 10 - Math.round(parseInt($(content_$.children('[answer_time]')[i]).attr('answer_time'))/1000);
-			}
-			score_num += 10 - Math.round(parseInt(answer_time)/1000);
 		}
+		for(var i = 0 ; i < content_$.children('[success_bool="true"]').length ; i++){
+			// score_num +=
+			score_num += 10 - Math.round(parseInt($(content_$.children('[answer_time]')[i]).attr('answer_time'))/1000);
+		}
+		score_num += 10 - Math.round(parseInt(answer_time)/1000);
 
 		feedBack_$.addClass('feedBack');
 		feedBack_$.css('background-image', "url(/assets/mark86x86000" + Number(2 + Number(success_bool)) + ".jpg)");

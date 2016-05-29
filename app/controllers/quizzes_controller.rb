@@ -74,17 +74,10 @@ class QuizzesController < ApplicationController
 		        format.html { render "quizzes/permission_denied", notice: " شما مجاز به انجام این کوییز نیستید" }
 		    end
 		end
-
-		
-	end
-
-	def update_user_score_in_category
-		@score = params[:score]
-
-		render notice: "مسابقه به پایان رسید"
 	end
 
 	def show_results
+		@user = current_user
 		puts request.fullpath
 		@questions = flash[:questions]
 		@score1 = "0"
@@ -114,21 +107,76 @@ class QuizzesController < ApplicationController
 				@score1 = params[:score]
 				@score2 = url_params["score"][0]
 				@rival = User.find(url_params["user_id"])[0]
-				add_score(current_user.id, Question.find(params['questions']['0']['qid']).category_id, @score1.to_i)
+				add_score(current_user.id, url_params['category_id'][0].to_i, @score1.to_i)
 				resutlUrl = Rails.application.config.default_root_url+'/show_results?score1=' + @score1 + "&score2=" + @score2 + "&user_id=" + current_user.id.to_s
-				QuizzMailer.offline_quizz_result_email(@rival, resutlUrl).deliver_now	
+				QuizzMailer.offline_quizz_result_email(@rival, resutlUrl).deliver_now
+
+				if @score2 < @score1
+					current_user.num_of_wins += 1
+					puts("##################### 22 ######################")
+				end
+				  puts"@@@@ mehrdad"
+				puts current_user.num_of_games
+				puts"@@@@@ end"
+					current_user.num_of_games += 1
+					current_user.score += @score1.to_i
+					current_user.save!
+				puts"@@@@ omid"
+				puts current_user.num_of_games
+				puts"@@@@@ end"
+
+
 			end
 
+			respond_to do |format|
+    			format.html { render "quizzes/results" }
+			end
 		else
-			
-			@rival = User.find(params[:user_id])
-			puts "ssssssssssssssssssssssssssss"
-			puts User.find(params[:user_id])
-			@score1 = params[:score1]
-			@score2 = params[:score2]
+			if(current_user.id == params[:rival_id].to_i)
+				@rival = User.find(params[:user_id])
+				puts User.find(params[:user_id])
+				@score1 = params[:score1]
+				@score2 = params[:score2]
+
+				if @score2 > @score1
+					current_user.num_of_wins += 1
+					puts("##################### 44 ######################")
+				end
+				puts("##################### 55 ######################")
+				current_user.num_of_games += 1
+				current_user.score += @score2.to_i
+				current_user.save!
+
+				respond_to do |format|
+	    			format.html { render "quizzes/results" }
+				end
+			else
+				respond_to do |format|
+	    			format.html { render "quizzes/permission_denied" }
+				end
+			end
 		end
-		respond_to do |format|
-    		format.html { render "quizzes/results" }
-		end			
-	end
+		if(current_user.score >= 1000 and current_user.user_acheivements.find_by_acheivement_id(1) == nil)
+			current_user.user_acheivements.new(acheivement_id: 1)
+		end
+
+		if(current_user.num_of_wins >= 2 and current_user.user_acheivements.find_by_acheivement_id(2) == nil)
+			current_user.user_acheivements.new(acheivement_id: 2)
+			puts "aaaaaaaaaaaaaaaaffffffffffffffffff"
+		end
+
+		if(current_user.num_of_games >= 10 and current_user.user_acheivements.find_by_acheivement_id(3) == nil)
+			current_user.user_acheivements.new(acheivement_id: 3)
+		end
+
+		if(current_user.user_acheivements.size() > 2  and current_user.user_acheivements.find_by_acheivement_id(4) == nil)
+			current_user.user_acheivements.new(acheivement_id: 4)
+		end
+
+		current_user.save
+
+
+		end
+
+
 end

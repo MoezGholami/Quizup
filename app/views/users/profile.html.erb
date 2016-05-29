@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/assets/profile.css">
+    <div class="card">
+  <div class="content">
+    <br>
+    <% @user.user_acheivements.each do |acheivement| %>
+      <div class="post ter">
+        <div class="flip-card">
+          <div class="card-front" id="card1-front">
+            <img src="<%= Acheivement.find(acheivement.acheivement_id).image %>" class="logo1" />
+          </div>
+          <div class="card-back" id="card1-back">
+            <div class="bar"></div>
+            <p class="text"><%= Acheivement.find(acheivement.acheivement_id).name %>
+            </p>
+            <p></p>
+            <p class="text"><%= Acheivement.find(acheivement.acheivement_id).dec %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="fabs">
+    <div class="fab"></div>
+    <i class="avatar zmdi zmdi-account"></i>
+  </div>
+  <div class="user">
+    <div class="profiles">
+      <div class="profile" style="width:50%;"><span style="width:auto;height:auto;border:5px ridge skyblue;">ایمیل</span><%= @user.email %></div>
+      <div class="profile" ><span style="width:auto;height:auto;border:5px ridge skyblue;">امتیاز</span><%= @user.score %></div>
+      <div class="profile"><span style="width:auto;height:auto;border:5px ridge skyblue;">نام و نام خانوادگی</span><%= @user.firs_name + " " + @user.last_name %></div>
+      <div class="profile"><span style="width:auto;height:auto;border:5px ridge skyblue;">جنسیت</span><%= @user.sex %></div>
+      <div class="profile" style="width:100%;"><span style="width:auto;height:auto;border:5px ridge skyblue;">کشور</span><%= @user.country %></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/profile.js"></script>
