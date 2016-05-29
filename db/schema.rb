@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20160528093203) do
     t.string   "last_name"
     t.string   "sex"
     t.string   "country"
-    t.integer  "score"
+    t.integer  "score",                  default: 0
     t.integer  "num_of_games",           default: 0
     t.integer  "num_of_wins",            default: 0
   end

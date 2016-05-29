@@ -69,7 +69,7 @@ function startQuiz() {"use strict";
 
 
 $(document).ready(function() {"use strict";
-	$('a').attr('target', '_blank');
+	$('a').attr('target', '_self');
 	startQuiz();
 	$('.response').addClass('button');
 });
