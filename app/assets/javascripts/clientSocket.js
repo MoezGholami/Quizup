@@ -21,11 +21,13 @@ clientSocket.isGettingInvitationFromUser=false;
 clientSocket.isQuzzing=false;
 clientSocket.IAmFirst=true;
 clientSocket.invitationTimeout=10;
+clientSocket.processOpponentAnswer=undefined;
 clientSocket.messageType={
 	askType:'askType',
 	answerType:'answerType',
 	acceptType:'acceptType',
-	refuseType:'refuseType'
+	refuseType:'refuseType',
+	oneQuestionStatus:'oneQuestionStatusType'
 };
 clientSocket.channelType={
 	category:'category',
@@ -62,13 +64,9 @@ clientSocket.init=function()
 
 	if(clientSocket.opponent_uid!=undefined && clientSocket.opponent_uid!=0)
 		clientSocket.isQuzzing=true;
-	if(typeof IAmSecond !== 'undefined')
-	{
+	if(typeof document.getElementById("IAMSecond") !== 'undefined' &&
+		document.getElementById("IAMSecond")!=undefined)
 		clientSocket.IAmFirst = false;
-		var temp=clientSocket.current_uid;
-		clientSocket.current_uid=clientSocket.opponent_uid;
-		clientSocket.opponent_uid=temp;
-	}
 
 	if (clientSocket.current_cid != undefined)
 		clientSocket.socketAdapter.subscribe('/categories/' + clientSocket.current_cid,
@@ -84,7 +82,7 @@ clientSocket.init=function()
 				if(dataString!=null)
 					clientSocket.processThisUserChannelData(JSON.parse(dataString));
 			});
-	if(typeof IAmSecond === 'undefined' && clientSocket.isQuzzing
+	if(clientSocket.IAmFirst && clientSocket.isQuzzing
 		&& document.getElementById('whole_quizz_container')!=undefined)
 	{
 		clientSocket.sendAcceptForOpponent();
@@ -148,6 +146,19 @@ clientSocket.processThisUserChannelData = function (dataObject)
 		clientSocket.processAnswerData(dataObject);
 	else if(dataObject.messageType==clientSocket.messageType.acceptType)
 		clientSocket.processChallengeAccept(dataObject);
+	else if(dataObject.messageType==clientSocket.messageType.oneQuestionStatus)
+		if (clientSocket.processOpponentAnswer != undefined)
+			clientSocket.processOpponentAnswer(dataObject);
+};
+
+clientSocket.sendMyAnswerData=function(myChoiceNumber, myAnswerTime, successCallback)
+{
+	var messageString=clientSocket.generateSpecificMessageString(
+		clientSocket.messageType.oneQuestionStatus,
+		clientSocket.opponent_uid, {choice: parseInt(myChoiceNumber), time: parseInt(myAnswerTime)});
+	clientSocket.sendRawMessageString(messageString,
+					function(){alert('fatal error');},
+					successCallback);
 };
 
 clientSocket.processChallengeAccept=function(data)

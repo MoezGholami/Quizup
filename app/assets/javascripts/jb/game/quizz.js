@@ -7,6 +7,13 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 	var context = this, questionSet_$;
 
 	this.questions_num = questions_num;
+	this.isOnline=(typeof document.getElementById('other_user_id_container') !== 'undefined' && document.getElementById('other_user_id_container') != undefined);
+	this.answer_step=0;
+	this.my_choice=0;
+	this.opponent_choice=0;
+	this.opponent_score=0;
+	this.answer_time=undefined;
+	this.event=undefined;
 	this.userTrack_$ = userTrack_$;
 	this.questions_$ = content_$;
 	this.display_$ = display_$;
@@ -63,29 +70,47 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 		display_$.append(context.endScreen_$);
 		endScreen_$.css('visibility', 'visible');
 		var address = $(location).attr('href');
-		if(address.indexOf("make_quiz") > -1){
-			console.log("make_quize");
-			endScreen_$.find('#result1').attr('data-perc', score_num);
-			endScreen_$.find('#result2').attr('data-perc', "0");
-			endScreen_$.find('#pic1').attr('src', "/assets/www.png");
-			endScreen_$.find('#pic2').attr('src', "");
-			endScreen_$.find('#score1').text("امتیاز: " + score_num + "/100");
-			endScreen_$.find('#score2').text("امتیاز: 0/100");
-		}
-		else if(address.indexOf("reload_quiz") > -1){
-			var scored = getParameterByName("score", $(location).attr('href'));
-			endScreen_$.find('#result1').attr('data-perc', score_num );
-			endScreen_$.find('#result2').attr('data-perc', scored);
-			if(parseInt(scored) > parseInt(score_num)){
-				endScreen_$.find('#pic1').attr('src', "/assets/FF.png");
-				endScreen_$.find('#pic2').attr('src', "/assets/www.png");						
-			}
-			else{
+		if(! context.isOnline ) {
+			if (address.indexOf("make_quiz") > -1) {
+				console.log("make_quize");
+				endScreen_$.find('#result1').attr('data-perc', score_num);
+				endScreen_$.find('#result2').attr('data-perc', "0");
 				endScreen_$.find('#pic1').attr('src', "/assets/www.png");
-				endScreen_$.find('#pic2').attr('src', "/assets/FF.png");						
+				endScreen_$.find('#pic2').attr('src', "");
+				endScreen_$.find('#score1').text("امتیاز: " + score_num + "/100");
+				endScreen_$.find('#score2').text("امتیاز: 0/100");
 			}
+			else if (address.indexOf("reload_quiz") > -1) {
+				var scored = getParameterByName("score", $(location).attr('href'));
+				endScreen_$.find('#result1').attr('data-perc', score_num);
+				endScreen_$.find('#result2').attr('data-perc', scored);
+				if (parseInt(scored) > parseInt(score_num)) {
+					endScreen_$.find('#pic1').attr('src', "/assets/FF.png");
+					endScreen_$.find('#pic2').attr('src', "/assets/www.png");
+				}
+				else {
+					endScreen_$.find('#pic1').attr('src', "/assets/www.png");
+					endScreen_$.find('#pic2').attr('src', "/assets/FF.png");
+				}
+				endScreen_$.find('#score1').text("امتیاز: " + score_num + "/100");
+				endScreen_$.find('#score2').text("امتیاز: " + scored + "/100");
+			}
+		}
+		else
+		{
+			context.opponent_score=Math.round(context.opponent_score)*2;
+			endScreen_$.find('#result1').attr('data-perc', score_num);
+			endScreen_$.find('#result2').attr('data-perc', context.opponent_score);
 			endScreen_$.find('#score1').text("امتیاز: " + score_num + "/100");
-			endScreen_$.find('#score2').text("امتیاز: " + scored + "/100");
+			endScreen_$.find('#score2').text("امتیاز: " + context.opponent_score + "/100");
+			if (context.opponent_score > parseInt(score_num)) {
+				endScreen_$.find('#pic1').attr('src', "/assets/FF.png");
+				endScreen_$.find('#pic2').attr('src', "/assets/www.png");
+			}
+			else {
+				endScreen_$.find('#pic1').attr('src', "/assets/www.png");
+				endScreen_$.find('#pic2').attr('src', "/assets/FF.png");
+			}
 		}
 	$(function() {
 		
@@ -154,7 +179,12 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 
 		var feedBack_$ = $('<div/>');
 		var score_num = 0;
-		var answer_time = context.onQuestionAnswer();
+		var answer_time;
+
+		if(! context.isOnline)
+			answer_time = context.onQuestionAnswer();
+		else
+			answer_time=context.answer_time;
 		console.log("ddd" + answer_time);
 		if(success_bool === true){
 		 	questionSet_$.attr("answer_time", answer_time);
@@ -194,10 +224,13 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 		});
 	};
 	this.timeOut = function() {
+		clientSocket.sendMyAnswerData(-1, 10, function(){});
 		displayFeedBack(false);
 	};
 	this.afficheQuestion = function(selectedQuestion_$) {
-		
+
+		context.answer_step=0;
+
 		questionSet_$ = selectedQuestion_$;
 		var solution_$ = questionSet_$.find(".solution");
 		var responseList_$ = $(questionSet_$.find(".response"));
@@ -224,11 +257,15 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 
 		showReponse();
 
-		responseList_$.bind(getClickEvent(), function(event) {
+		var processUserAnswer = function(event) {
 
 			responseList_$.removeClass('button');
 			var button_$ = $(this);
-			var selected_num = button_$.index();
+			var selected_num;
+			if(! context.isOnline)
+				selected_num = button_$.index();
+			else
+				selected_num=context.my_choice;
 
 			var success_bool = context.success_bool = selected_num === reponse_num;
 			questionSet_$.attr('resp', selected_num.toString());
@@ -249,12 +286,56 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 				$(responseList_$[answers[questionSet_$.attr("question-id")]-1]).addClass('rival-answer');
 				console.log(responseList_$);
 			}
-			responseList_$.not('.rival-answer').not('.true').not('.false').not('.missedTrue').addClass('unsellectedFalse');
+			if(context.isOnline)
+				if(context.opponent_choice!=-1)
+					$(responseList_$[context.opponent_choice-1]).addClass('rival-answer');
 			displayFeedBack(success_bool, event);
-		});
+		};
+
+		var processMyOpponentAnswer=function(data)
+		{
+			if(data.choice == reponse_num)
+				context.opponent_score=(10-Math.round(data.time/1000))+context.opponent_score;
+			context.opponent_choice=data.choice;
+			if(context.answer_step==1)
+			{
+				processUserAnswer(event);
+				context.answer_step=0;
+				context.event=undefined;
+			}
+			else
+				context.answer_step=1;
+		};
+
+		clientSocket.processOpponentAnswer=processMyOpponentAnswer;
+
+		var processUserAnswerWhenOnline=function(event)
+		{
+			responseList_$.unbind(getClickEvent(), processUserAnswerWhenOnline);
+			context.answer_time=context.onQuestionAnswer();
+			context.my_choice=parseInt($(this).index());
+			clientSocket.sendMyAnswerData(context.my_choice, context.answer_time, function(){});
+			if(context.answer_step==1)
+			{
+				processUserAnswer(event);
+				context.answer_step=0;
+			}
+			else
+			{
+				context.answer_step=1;
+				context.event=event;
+				responseList_$.removeClass('button');
+			}
+		};
+
+		if(! context.isOnline)
+			responseList_$.bind(getClickEvent(), processUserAnswer);
+		else
+			responseList_$.bind(getClickEvent(), processUserAnswerWhenOnline);
 	};
 
 	var init = function() {
+		context.opponent_score=0;
 		var IMG_WIDTH = 24, display_time = 0, n;
 		context.answer_num = 0;
 

@@ -4,7 +4,7 @@
 			<% if @isFirst %>
 			<div id="url_for_second" hidden><%= @makeUrlForSecond %></div>
 			<% else %>
-			<script>var IAmSecond=true; </script>
+			<div id="IAMSecond">1</div>
 			<% end %>
 			<div id="current_category_id_container" hidden><%= @cat_id %></div>
 			<div id="current_user_id_container" hidden><%= @current_uid %></div>
