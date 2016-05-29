@@ -1,12 +1,12 @@
 <div class="flip-card">
 	<div class="card-front" id="card1-front">
-	  <img src="<%= achievement.image %>" class="logo1" />
+	  <img src="<%= Acheivement.find(acheivement.achievement_id).image %>" class="logo1" />
 	</div>
 	<div class="card-back" id="card1-back">
 	  <div class="bar"></div>
-	  <p class="text"><%= achievement.name %>
+	  <p class="text"><%= Acheivement.find(acheivement.achievement_id).name %>
 	  </p>
-    <p class="text"><%= achievement.dec %>
+    <p class="text"><%= Acheivement.find(acheivement.achievement_id).dec %>
     </p>
 	</div>
 </div>

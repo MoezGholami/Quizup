@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :user_ranks
   accepts_nested_attributes_for :user_ranks
-  has_many :acheivements
+  has_many :user_acheivements
 
     
 end

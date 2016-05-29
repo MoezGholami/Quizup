@@ -136,21 +136,21 @@ class QuizzesController < ApplicationController
 				end
 			end	
 		end
-		if(current_user.score >= 1000 and current_user.acheivements.find(1) == nil)
-			current_user.acheivements << Acheivement.find(1)
+		if(current_user.score >= 1000 and current_user.user_acheivements.find_by_acheivement_id(1) == nil)
+			current_user.user_acheivements.new(acheivement_id: 1)
 		end
 
-		if(current_user.num_of_wins >= 2 and current_user.acheivements.find(2) == nil)
-			current_user.acheivements << Acheivement.find(2)
+		if(current_user.num_of_wins >= 2 and current_user.user_acheivements.find_by_acheivement_id(2) == nil)
+			current_user.user_acheivements.new(acheivement_id: 2)
 			puts "aaaaaaaaaaaaaaaaffffffffffffffffff"
 		end
 
-		if(current_user.num_of_games >= 10 and current_user.acheivements.find(3) ==nil)
-			current_user.acheivements << Acheivement.find(3)
+		if(current_user.num_of_games >= 10 and current_user.user_acheivements.find_by_acheivement_id(3) == nil)
+			current_user.user_acheivements.new(acheivement_id: 3)
 		end
 
-		if(current_user.acheivements.size() > 2  and current_user.acheivements.find(4) == nil)
-			current_user.acheivements << Acheivement.find(4)
+		if(current_user.user_acheivements.size() > 2  and current_user.user_acheivements.find_by_acheivement_id(4) == nil)
+			current_user.user_acheivements.new(acheivement_id: 4)
 		end
 
 		current_user.save

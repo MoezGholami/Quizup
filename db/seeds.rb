@@ -94,7 +94,7 @@ end
 def seed_acheivement_idempotent
 		a1 = Acheivement.new( name:"قهرمان", dec:"به امتیاز ۱۰۰۰ رسیدی ", image:"/assets/m3.png")
 		a2 = Acheivement.new( name:"مشتی", dec:"به تعداد برد ۵ رسیدی", image:"/assets/m4.png")
-		a3 = Acheivement.new( name:"علاف و اسمان جل", dec:"از بیکاری به ۱۰ بازی در کافه کوییز رسیدی!", image:"/assets/m6.png")
+		a3 = Acheivement.new( name:"علاف و آسمان جل", dec:"از بیکاری به ۱۰ بازی در کافه کوییز رسیدی!", image:"/assets/m6.png")
 		a4 = Acheivement.new( name:"قهرمان کل", dec:"به چندین مدال دست یافتی ", image:"/assets/m۱.png")
 		a1.save!
 		a2.save!
