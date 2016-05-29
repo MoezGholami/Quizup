@@ -27,11 +27,11 @@
   </div>
   <div class="user">
     <div class="profiles">
-      <div class="profile"><span>ایمیل</span><%= @user.email %></div>
+      <div class="profile" style="width:50%;"><span>ایمیل</span><%= @user.email %></div>
+      <div class="profile" ><span>امتیاز</span><%= @user.score %></div>
       <div class="profile"><span>نام و نام خانوادگی</span><%= @user.firs_name + " " + @user.last_name %></div>
       <div class="profile"><span>جنسیت</span><%= @user.sex %></div>
-      <div class="profile"><span>کشور</span><%= @user.country %></div>
-      <div class="profile"><span>امتیاز</span><%= @user.score %></div>
+      <div class="profile" style="width:100%;"><span>کشور</span><%= @user.country %></div>
     </div>
   </div>
 </div>

@@ -3,6 +3,7 @@
 class QuizzesController < ApplicationController
 
 	def add_score(uid, cid, this_score)
+		puts "sssssssssssssssssssssss" + this_score.to_s
 		if User.find(uid).user_ranks.where(category_id=cid).empty?
 			new_rank=User.find(uid).user_ranks.build(:category_id => cid, :score => this_score)
 			new_rank.save!
@@ -11,7 +12,7 @@ class QuizzesController < ApplicationController
 			new_rank.score=new_rank.score+this_score
 			new_rank.save!
 		end
-		current_user.score += this_score
+		
 	end
 
 	def make_quiz
@@ -86,20 +87,38 @@ class QuizzesController < ApplicationController
 				@score2 = url_params["score"][0]
 				@rival = User.find(url_params["user_id"])[0]
 				add_score(current_user.id, url_params['category_id'][0].to_i, @score1.to_i)
-				resutlUrl = 'http://www.cafequiz.ir/show_results?score1=' + @score1 + "&score2=" + @score2 + "&user_id=" + current_user.id.to_s
+				resutlUrl = 'http://www.cafequiz.ir/show_results?score1=' + @score1 + "&score2=" + @score2 + "&user_id=" + current_user.id.to_s + "&rival_id=" + @rival.id.to_s
 				QuizzMailer.offline_quizz_result_email(@rival, resutlUrl).deliver_now	
 			end
-
+			respond_to do |format|
+    			format.html { render "quizzes/results" }
+			end	
 		else
-			
-			@rival = User.find(params[:user_id])
-			puts "ssssssssssssssssssssssssssss"
-			puts User.find(params[:user_id])
-			@score1 = params[:score1]
-			@score2 = params[:score2]
+			if(current_user.id == params[:rival_id].to_i)
+				@rival = User.find(params[:user_id])
+				puts User.find(params[:user_id])
+				@score1 = params[:score1]
+				@score2 = params[:score2]
+				if @score2 > @score1
+					current_user.num_of_wins += 1
+				elsif @score2 < @score1
+					@rival.num_of_wins += 1
+				end
+				current_user.num_of_games += 1
+				@rival.num_of_games += 1
+				current_user.score += @score2
+				@rival.score += @score1
+				current_user.save
+				@rival.save
+				
+				respond_to do |format|
+	    			format.html { render "quizzes/results" }
+				end
+			else
+				respond_to do |format|
+	    			format.html { render "quizzes/permission_denied" }
+				end
+			end	
 		end
-		respond_to do |format|
-    		format.html { render "quizzes/results" }
-		end			
 	end
 end

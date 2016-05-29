@@ -24,7 +24,7 @@
 
 <div style="width: 600px; margin: 0 auto; ">
     <figure class="snip1336">
-      <% if @score1.to_i > @score2.to_i %>
+      <% if @score1.to_i <= @score2.to_i %>
         <img src="/assets/www.png" alt="sample87"/>
       <% else %>
         <img src="/assets/FF.png" alt="sample87"/>
@@ -39,10 +39,10 @@
 </div>
 <div>
     <figure class="snip1336">
-        <% if @score1.to_i <= @score2.to_i %>
-          <img src="/assets/FF.png" alt="sample87"/>
-        <% else %>
+        <% if @score1.to_i >= @score2.to_i %>
           <img src="/assets/www.png" alt="sample87"/>
+        <% else %>
+          <img src="/assets/FF.png" alt="sample87"/>
         <% end %>
         <figcaption>
             <h3>نام: <% if @rival != nil %> <%= @rival.firs_name %> <% end %></h3>
