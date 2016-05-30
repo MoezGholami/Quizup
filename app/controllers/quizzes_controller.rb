@@ -108,7 +108,7 @@ class QuizzesController < ApplicationController
 				@score2 = url_params["score"][0]
 				@rival = User.find(url_params["user_id"])[0]
 				add_score(current_user.id, url_params['category_id'][0].to_i, @score1.to_i)
-				resutlUrl = Rails.application.config.default_root_url+'/show_results?score1=' + @score1 + "&score2=" + @score2 + "&user_id=" + current_user.id.to_s
+				resutlUrl = Rails.application.config.default_root_url+'/show_results?score1=' + @score2 + "&score2=" + @score1 + "&user_id=" + current_user.id.to_s + "&rival_id=" + @rival.id.to_s
 				QuizzMailer.offline_quizz_result_email(@rival, resutlUrl).deliver_now
 
 				if @score2 < @score1

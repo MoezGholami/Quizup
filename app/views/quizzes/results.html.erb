@@ -4,11 +4,11 @@
 <h1 align="center">نتایج مسابقه</h1>
   <% if @score1.to_i < @score2.to_i %>
     <div class="progressbar" data-perc="<%= @score1.to_i %>">
-      <div class="bar color3"><span></span></div>
+      <div class="bar"><span></span></div>
       <div class="label"><span></span></div>
     </div>
     <div class="progressbar" data-perc="<%= @score2.to_i %>">
-      <div class="bar"><span></span></div>
+      <div class="bar color3"><span></span></div>
       <div class="label"><span></span></div>
     </div> 
   <% else %>
@@ -24,7 +24,7 @@
 
 <div style="width: 600px; margin: 0 auto; ">
     <figure class="snip1336">
-      <% if @score1.to_i <= @score2.to_i %>
+      <% if @score1.to_i > @score2.to_i %>
         <img src="/assets/www.png" alt="sample87"/>
       <% else %>
         <img src="/assets/FF.png" alt="sample87"/>
@@ -39,7 +39,7 @@
 </div>
 <div>
     <figure class="snip1336">
-        <% if @score1.to_i >= @score2.to_i %>
+        <% if @score1.to_i <= @score2.to_i %>
           <img src="/assets/www.png" alt="sample87"/>
         <% else %>
           <img src="/assets/FF.png" alt="sample87"/>

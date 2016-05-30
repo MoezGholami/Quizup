@@ -223,7 +223,8 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 		});
 	};
 	this.timeOut = function() {
-		clientSocket.sendMyAnswerData(-1, 10, function(){});
+		if(context.isOnline)
+			clientSocket.sendMyAnswerData(-1, 10, function(){});
 		displayFeedBack(false);
 	};
 	this.afficheQuestion = function(selectedQuestion_$) {
@@ -306,7 +307,8 @@ var Quizz_jb = function(content_$, display_$, userTrack_$, endScreen_$, question
 				context.answer_step=1;
 		};
 
-		clientSocket.processOpponentAnswer=processMyOpponentAnswer;
+		if(context.isOnline)
+			clientSocket.processOpponentAnswer=processMyOpponentAnswer;
 
 		var processUserAnswerWhenOnline=function(event)
 		{
