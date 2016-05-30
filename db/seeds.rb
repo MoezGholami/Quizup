@@ -10,28 +10,28 @@ def seed_users_idempotent
   if User.where(firs_name: 'غلام').empty?
     gholam=User.new(firs_name:'غلام', last_name:'غلامی', email:'gholam@cafequiz.ir',
 										sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
-    gholi=User.new(firs_name: 'قیصر', last_name:'قیصرخان', email:'gheysar@cafequiz.ir',
+    gheysar=User.new(firs_name: 'قیصر', last_name:'قیصرخان', email:'gheysar@cafequiz.ir',
 									 	sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
-		ghamar=User.new(firs_name: 'رامتین', last_name: 'رامتین خان', email:'ramtin@cafequiz.ir',
+		ramtin=User.new(firs_name: 'رامتین', last_name: 'رامتین خان', email:'ramtin@cafequiz.ir',
 										sex:'مونث', country:'ایران', password:'123456789', password_confirmation:'123456789')
-		taghi=User.new(firs_name: 'هوشنگ', last_name: 'هوشنگ خان', email:'hoshang@cafequiz.ir',
+		hooshang=User.new(firs_name: 'هوشنگ', last_name: 'هوشنگ خان', email:'hoshang@cafequiz.ir',
 									 	sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
-		naghi=User.new(firs_name: 'چنگیز', last_name: 'چنگیزخان', email:'changiz@cafequiz.ir',
+		changiz=User.new(firs_name: 'چنگیز', last_name: 'چنگیزخان', email:'changiz@cafequiz.ir',
 									 sex:'مذکر', country:'ایران', password:'123456789', password_confirmation:'123456789')
 
 
 
     gholam.skip_confirmation!
-    gholi.skip_confirmation!
-		ghamar.skip_confirmation!
-		taghi.skip_confirmation!
-		naghi.skip_confirmation!
+    gheysar.skip_confirmation!
+		ramtin.skip_confirmation!
+		hooshang.skip_confirmation!
+		changiz.skip_confirmation!
 
     gholam.save!
-    gholi.save!
-		ghamar.save!
-		taghi.save!
-		naghi.save!
+    gheysar.save!
+		ramtin.save!
+		hooshang.save!
+		changiz.save!
 
     puts 'users seeded'
   else
@@ -92,6 +92,7 @@ def seed_questions_idempotent
 end
 
 def seed_acheivement_idempotent
+	if(Acheivement.where(name:"قهرمان").empty?)
 		a1 = Acheivement.new( name:"قهرمان", dec:"به امتیاز ۱۰۰۰ رسیدی ", image:"/assets/m3.png")
 		a2 = Acheivement.new( name:"مشتی", dec:"به تعداد برد ۵ رسیدی", image:"/assets/m4.png")
 		a3 = Acheivement.new( name:"علاف و آسمان جل", dec:"از بیکاری به ۱۰ بازی در کافه کوییز رسیدی!", image:"/assets/m6.png")
@@ -100,7 +101,10 @@ def seed_acheivement_idempotent
 		a2.save!
 		a3.save!
 		a4.save!
-
+		puts 'achivements seeded'
+	else
+		puts 'achivements exist, aborting seeding achivements.'
+	end
 end
 
 
