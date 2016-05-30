@@ -296,6 +296,8 @@ clientSocket.askForOnlineMatch=function()
 
 $(function()
 {
+	if(document.getElementById('loading_img')!=null)
+		document.getElementById('loading_img').style.display = 'none';
 	if(clientSocket.webSocketAdr==undefined)
 		clientSocket.init();
 });
